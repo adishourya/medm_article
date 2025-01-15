@@ -25,7 +25,7 @@
 
 ]
 
-#lorem(100)
+#glorem(num:100)
 
 #grid(
   columns: (1fr,1fr,1fr),
@@ -35,13 +35,13 @@
 )
 
 === Raw Attentions
-#lorem(100)
+#glorem(num:100)
 
 === Attention Rollout
-#lorem(100)
+#glorem(num:100)
 
 === Attention Flow
-#lorem(100)
+#glorem(num:100)
 
 
 
@@ -49,7 +49,7 @@
 #plan[
 	- cot ++ showed no effect on medpalm . but medpalm was text only qa. we can do ablation studies on vqa
 ]
-#lorem(100)
+#glorem(num:100)
 //-------------------
 
 == Few shot prompting at evaluataion
@@ -57,4 +57,4 @@
 #plan[
 	+ briefly explain and show examples.
 ]
-#lorem(100)
+#glorem(num:100)

@@ -53,6 +53,6 @@ table(
   [Accuracy],[],[],[],
 ),caption:[nlp metrics results])
 
-#oasis-align(nlp_eval_table,[#lorem(60)])
+#oasis-align(nlp_eval_table,[#glorem(num:60)])
 
-#lorem(100)
+#glorem(num:100)

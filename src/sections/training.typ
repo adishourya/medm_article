@@ -29,7 +29,7 @@
 + summarize @section_datamix @section_synthetic @section_annealing 
 	
 ]
-#lorem(100)
+#glorem(num:100)
 
 
 === Determining the Data Mix <section_datamix>
@@ -67,7 +67,7 @@ The CheXpert team performed rigorous label validation, as detailed in @johnson20
   figure(image("../../our_images/data/treemap_cxr.png",width: 250pt)),
 		// rect(width: 250pt,height: 250pt),
 		caption:[Labeled])
-,[#lorem(300)])
+,[#glorem(num:300)])
 
 
 === Synthetic Data <section_synthetic>
@@ -84,10 +84,10 @@ The CheXpert team performed rigorous label validation, as detailed in @johnson20
 #oasis-align(
 figure(
   [#mcq_llama],caption: []),
-	[#lorem(120)],
+	[#glorem(num:120)],
 )
 
-#lorem(100)
+#glorem(num:100)
 
 // #tip[
 //   - Use a finetuned model to generate questions.
@@ -104,13 +104,13 @@ figure(
 #plan[
 + Mixing Medpix low vol / High Quality to generate larger volume of data.
 ]
-#lorem(100)
+#glorem(num:100)
 
 #wrap-content(align:right,
 	figure(    image("../../our_images/data/treemap_medpix2.png",width: 250pt),
 		// rect(width: 250pt,height: 250pt),
 		caption:[Labeled])
-,[#lorem(300)])
+,[#glorem(num:200)])
 
 #wrap-content(
   align:right,
@@ -119,7 +119,7 @@ figure(
   include("../../graphs/filtering_flowchart.typ"),
   // include("../../graphs/test_losses.typ"),
   caption: [#todo[incomplete!]]),
-  [#lorem(400)]
+  [#glorem(num:200)]
 )
 
 
@@ -128,7 +128,7 @@ figure(
 #plan[
   + Formally describe LORA
 ]
-#lorem(300)
+#glorem(num:300)
 
 
 
@@ -158,7 +158,7 @@ figure(
 		caption: [our results currently],
 		// placement: auto,
 		// scope: "parent"
-	),[#lorem(200)])
+	),[#glorem(num:200)])
 
 
 
@@ -167,4 +167,4 @@ figure(
 
 
 
-#lorem(100)
+#glorem(num:100)

@@ -19,6 +19,11 @@
   }
 }
 
+// gray lorem
+#let glorem(num:int) = {
+  text(fill:white.darken(40%), [#lorem(num)])
+} 
+
 
 
 // inline callouts
@@ -52,6 +57,7 @@
 	]
 }
 
+
 // block callouts
 #let block-inset = 1em
 #let block-radius = 0.5em
@@ -75,6 +81,7 @@
     #wrap-content(image("../icons/circle.svg",height:10pt),[#h(-0.8em)#content])
   ]
 }}
+
 
 #let coherence(title:"Coherence?",content) = {
   if not(my_global.hide_comments) {
