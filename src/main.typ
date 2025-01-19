@@ -15,6 +15,9 @@
 	A Practical Approach*
 ]
 
+// current limitations of adapting generalist VLM for radiological visual
+// linguistic tasks ?
+
 #show_title(title)
 
 
@@ -50,8 +53,6 @@
 
 // #columns(1)[
 
-// #comment[ All the sections are taken from llama3 @touvron2023llamaopenefficientfoundation ; (except for experiments @section_saliency) these are the ones that i feel i can talk about in detail]
-
 //-------------------
 #include "sections/introduction.typ"
 
@@ -64,20 +65,23 @@
 //-------------------
 #include "sections/training.typ"
 
-
 //-------------------
 #include "sections/scaling.typ"
-
-//-------------------
-#include "sections/experiments.typ"
 
 //-------------------
 #include "sections/evaluation.typ"
 
 //-------------------
-#include "sections/conclusion.typ"
+#include "sections/saliency.typ"
 
 //-------------------
+#include "sections/experiments.typ"
+
+//-------------------
+#include "sections/further.typ"
+
+//-------------------
+#include "sections/conclusion.typ"
 
 //-------------------
 

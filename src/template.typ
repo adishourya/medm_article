@@ -32,8 +32,8 @@
   link_color : rgb("#2e6798"),
   
   gradient_color:  gradient.linear(..color.map.crest),
-  
-  comment_color : gradient.linear(..color.map.flare)
+  comment_color : gradient.linear(..color.map.flare),
+  cmap_color : gradient.linear(..color.map.icefire)
 
 )
 
@@ -128,25 +128,25 @@
   // table settings
 
   #set table(
-  stroke: none,
+  stroke:none,
   gutter: 0.1em,
   fill: (x, y) =>{ 
-    if x==0 and y==0 {my_colors.accent}
-    else if x == 0 and y > 0 {gray.darken(50%)} 
-    else if y==0 {gray} 
-    else {rgb("#eceff4")}},
+    if x==0 and y==0 {my_colors.plan_fg}
+    else if x == 0 and y > 0 {gray.lighten(80%)} 
+    else if y==0 {gray.lighten(60%)} 
+    else {my_colors.alt_fg.lighten(40%)}},
   inset: (right: 1.5em),
   )
 
   #show table.cell: it => {
     if it.x == 0 or it.y == 0 {
-      set text(white)
-      strong(it)
-    } else if it.body == [] {
-      // Replace empty cells with 'N/A'
-      pad(..it.inset)[_N/A_]
+      text(size:8pt,[#it])
+    }else if it.x == 0 and it.y == 0 {
+      text(fill:white,[*#it*])
+    }else if it.body == [] {
+      text(size:8pt,[])
     } else {
-      it
+      text(size:8pt,[#it])
     }
   }
   

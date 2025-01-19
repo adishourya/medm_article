@@ -23,6 +23,17 @@
 #import "../code_blocks/tables.typ" : cxr_table_conditions_table
 
 #cxr_table_conditions_table
+
+#tasks[
+  - Major Tasks:
+    - Finetuning with cxr-jpg
+    - Accuracy template and Evaluation
+  - Minor Tasks:
+    - Readme github
+    - tool as a submodule in main repository
+]
+
+
 	
 
 

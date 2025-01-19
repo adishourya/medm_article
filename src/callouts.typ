@@ -97,6 +97,20 @@
   }
 )}}
 
+#let tasks(title:"Tasks",content) = {
+  if not(my_global.hide_comments) {
+
+  block(
+  fill: rgb("#E5F8F8"),
+  inset: block-inset, 
+  radius: block-radius,
+  width: 100%,
+  {
+    text(rgb("#00bfbc"),weight: 700)[#icon("flame") #title]
+    text(size:6pt)[#content]
+  }
+)}}
+
 
 
 #let plan(content) = {

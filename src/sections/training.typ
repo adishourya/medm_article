@@ -22,8 +22,9 @@
 == Data Curation <section_curation>
 #plan[
 + Most soa models start with dataset curation and often end up with the largest voulme of high quality medical data.
-+ most instruct models are made from human labelers. But some models like @abdin2024phi also train on synthetic data. 
-+ instruct dataset 1 to gain conceptual understanding like cc12m @changpinyo2021cc12m
++ Briefly discuss what roco does to build their pipeline.
++ most instruct models are made from human labelers. But some models like @abdin2024phi also trained on synthetic data. 
++ instruct dataset 1 to gain conceptual understanding like cc12m @changpinyo2021cc12m.
 + Task specific instruct dataset 2 like roco @pelka2018roco , @johnson2019mimiccxrjpglargepubliclyavailable.
 + need for validation of labels in medical instruct dataset
 + summarize @section_datamix @section_synthetic @section_annealing 
@@ -35,7 +36,7 @@
 === Determining the Data Mix <section_datamix>
 #plan[
 	// #comment[this is wrong]
-	+ show that it only works when enough diversity in the training sample
+	+ show that we need a focused dataset to finetune.
 	+ treemap of the dataset.
 	+ (did not work with medpix @siragusa2024medpix20comprehensivemultimodal alone)
 	#todo[adjust depth of treemaps... depth 2 should be readable]

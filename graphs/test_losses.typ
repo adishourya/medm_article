@@ -7,7 +7,7 @@
 #let color1 = plot_colors.at(0)
 #let color2 = plot_colors.at(3)
 #let color3 = plot_colors.at(6)
-#let style1 = (stroke:1pt+color1)
+#let style1 = (stroke:(paint: color1, thickness: 1pt, dash: "dashed"))
 #let style2 = (stroke:1pt+color2)
 #let style3 = (stroke:1pt+color3)
 

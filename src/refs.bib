@@ -1,4 +1,15 @@
-%------ Atleast cite 🤞 ~50 . paligemma does (135)
+%------ Atleast cite 🤞 ~60 . paligemma does (135)
+
+% convolutional sequence to sequence
+@misc{gehring2017convolutionalsequencesequencelearning,
+      title={Convolutional Sequence to Sequence Learning}, 
+      author={Jonas Gehring and Michael Auli and David Grangier and Denis Yarats and Yann N. Dauphin},
+      year={2017},
+      eprint={1705.03122},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/1705.03122}, 
+}
 
 %all you need
 @misc{vaswani2023attentionneed,
@@ -10,6 +21,46 @@
       primaryClass={cs.CL},
       url={https://arxiv.org/abs/1706.03762}, 
 }
+
+% annotated transformers
+@misc{annotatedtransformer,
+  author       = {Sasha Rush ,  Austin Huang, Suraj Subramanian, Jonathan Sum, Khalid Almubarak, and Stella Biderman.},
+  title        = {The Annotated Transformer},
+  howpublished = {\url{https://nlp.seas.harvard.edu/annotated-transformer/}},
+  year         = {2018},
+  note         = {Accessed: 2025-01-16}
+}
+
+% self attention produces disjointed saliency
+@misc{zhang2024depthwiseconvolutionsvisiontransformers,
+      title={Depth-Wise Convolutions in Vision Transformers for Efficient Training on Small Datasets}, 
+      author={Tianxiao Zhang and Wenju Xu and Bo Luo and Guanghui Wang},
+      year={2024},
+      eprint={2407.19394},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2407.19394}, 
+}
+% slaiency != explainability
+@article{bertrand2022saliency,
+   title={Searching for Unintended Biases with Saliency},
+   author={Bertrand, Astrid and Pearce, Adam and Thain, Nithum},
+   year={2022},
+   journal={PAIR Explorables},
+   note={https://pair.withgoogle.com/explorables/saliency/}
+}
+
+% vits are inherently saliency learners
+@inproceedings{DJILALI_2023_BMVC_inherent_saliency,
+author    = {YASSER ABDELAZIZ DAHOU DJILALI and Kevin McGuinness and Noel O Connor},
+title     = {Vision Transformers are Inherently Saliency Learners},
+booktitle = {34th British Machine Vision Conference 2023, {BMVC} 2023, Aberdeen, UK, November 20-24, 2023},
+publisher = {BMVA},
+year      = {2023},
+url       = {https://papers.bmvc2023.org/0771.pdf}
+}
+
+
 
 % imaage is worth 16x16
 @misc{dosovitskiy2021imageworth16x16words,
@@ -87,6 +138,7 @@ number = {MSR-TR-2024-12},
       url={https://arxiv.org/abs/2302.13971}, 
 }
 
+% tokenizer : sentencepiece
 @misc{kudo2018sentencepiecesimplelanguageindependent,
       title={SentencePiece: A simple and language independent subword tokenizer and detokenizer for Neural Text Processing}, 
       author={Taku Kudo and John Richardson},
@@ -97,8 +149,7 @@ number = {MSR-TR-2024-12},
       url={https://arxiv.org/abs/1808.06226}, 
 }
 
-% baby doctor github
-
+% baby doctor github : individual researcher 1
 @misc{photomzroco2023,
   author = {Markus Zhang, Vir Chau},
   title = {BabyDoctor},
@@ -107,7 +158,7 @@ number = {MSR-TR-2024-12},
   note = {GitHub}
 }
 
-%individual researcher1
+%individual researcher2
 @misc{vansonsbeek2023openendedmedicalvisualquestion,
       title={Open-Ended Medical Visual Question Answering Through Prefix Tuning of Language Models}, 
       author={Tom van Sonsbeek and Mohammad Mahdi Derakhshani and Ivona Najdenkoska and Cees G. M. Snoek and Marcel Worring},
@@ -222,6 +273,7 @@ year = {2016},
       url={https://arxiv.org/abs/2001.08361}, 
 }
 
+% 4m
 @inproceedings{4m,
     title={{4M}: Massively Multimodal Masked Modeling},
     author={David Mizrahi and Roman Bachmann and O{\u{g}}uzhan Fatih Kar and Teresa Yeo and Mingfei Gao and Afshin Dehghan and Amir Zamir},
@@ -316,6 +368,49 @@ year = {2016},
    year={2019},
    month=oct, pages={336–359} }
 
+% quantifying attention flow , rollout 
+@misc{abnar2020quantifyingattentionflowtransformers,
+      title={Quantifying Attention Flow in Transformers}, 
+      author={Samira Abnar and Willem Zuidema},
+      year={2020},
+      eprint={2005.00928},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2005.00928}, 
+}
+
+% benchmarking saliency
+@article{Saporta2022,
+  author       = {Saporta, Adriel and Gui, Xiaotong and Agrawal, Ashwin and Pareek, Anuj and Truong, Steven Q. H. and Nguyen, Chanh D. T. and Ngo, Van-Doan and Seekins, Jayne and Blankenberg, Francis G. and Ng, Andrew Y. and Lungren, Matthew P. and Rajpurkar, Pranav},
+  title        = {Benchmarking saliency methods for chest X-ray interpretation},
+  journal      = {Nature Machine Intelligence},
+  volume       = {4},
+  number       = {10},
+  pages        = {867--878},
+  year         = {2022},
+  month        = {October},
+  doi          = {10.1038/s42256-022-00536-x},
+  url          = {https://doi.org/10.1038/s42256-022-00536-x},
+  issn         = {2522-5839},
+  abstract     = {Saliency methods, which produce heat maps that highlight the areas of the medical image that influence model prediction, are often presented to clinicians as an aid in diagnostic decision-making. However, rigorous investigation of the accuracy and reliability of these strategies is necessary before they are integrated into the clinical setting. In this work, we quantitatively evaluate seven saliency methods, including Grad-CAM, across multiple neural network architectures using two evaluation metrics. We establish the first human benchmark for chest X-ray segmentation in a multilabel classification set-up, and examine under what clinical conditions saliency maps might be more prone to failure in localizing important pathologies compared with a human expert benchmark. We find that (1) while Grad-CAM generally localized pathologies better than the other evaluated saliency methods, all seven performed significantly worse compared with the human benchmark, (2) the gap in localization performance between Grad-CAM and the human benchmark was largest for pathologies that were smaller in size and had shapes that were more complex, and (3) model confidence was positively correlated with Grad-CAM localization performance. Our work demonstrates that several important limitations of saliency methods must be addressed before we can rely on them for deep learning explainability in medical imaging.}
+}
+
+
+
+% saliency aware modelling
+@INPROCEEDINGS{aware_saliency,
+  author={Li, Hui and Wang, Luxi and Li, Yingming},
+  booktitle={2023 IEEE International Conference on Visual Communications and Image Processing (VCIP)}, 
+  title={Efficient Context and Saliency Aware Transformer Network for No-Reference Image Quality Assessment}, 
+  year={2023},
+  volume={},
+  number={},
+  pages={1-5},
+  abstract={No-Reference Image Quality Assessment (NR-IQA) aims to estimate the perceptual image quality without access to reference images. To deal with it effectively and efficiently, in this work we propose a Context and Saliency aware Transformer Network (CSTNet), which is built based on a lightweight pyramid Vision Transformer (ViT). Specifically, a Multi-scale Context Aware Refinement (MCAR) block is devised to fully leverage hierarchical context features extracted by the ViT backbone. Further, saliency map prediction is incorporated as a sub-task to simulate the human attention on salient regions when perceiving images. Extensive experiments on public image quality datasets demonstrate its efficiency and superiority compared to the state-of-the-art models.},
+  keywords={Image quality;Context-aware services;Visual communication;Transformers;Feature extraction;image quality assessment;transformer;saliency},
+  doi={10.1109/VCIP59821.2023.10402637},
+  ISSN={2642-9357},
+  month={Dec},}
 
 
 % pmc15m

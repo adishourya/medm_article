@@ -10,35 +10,6 @@
 		
 ]
 
-#set table(
-stroke: none,
-gutter: 0.1em,
-fill: (x, y) =>{ 
-  if x==0 and y==0 {my_colors.accent}
-  else if x == 0 and y < 5 {gray.darken(50%)} 
-  else if x == 0 and y == 5 {black} 
-  else if y==0 {gray} 
-  else {rgb("#eceff4")}},
-inset: (right: 1.5em),
-)
-
-#show table.cell: it => {
-  if it.x == 0 or it.y ==0 {
-    set text(white)
-    strong(it)}
-    
-  else if it.x==3 and it.y==5{
-    set text(red)
-    strong(it)
-  }
-
-  else if it.body == [] {
-    // Replace empty cells with 'N/A'
-    pad(..it.inset)[_N/A_]
-  } else {
-    it
-  }
-}
 
 
 
@@ -46,13 +17,13 @@ inset: (right: 1.5em),
 table(
   columns: 4,
   [Metrics],[roco],[roco+medpix],[cxr-jpg],
-  [rouge-s],[0.4 #sym.plus.minus 0.03],[],[],
-  [rouge-m],[0.1],[],[],
-  [rouge-l],[0.3],[],[],
-  [Bleu],[0.1],[],[],
-  [Accuracy],[],[],[],
-),caption:[nlp metrics results])
+  [rouge-s],[0.325 #sym.plus.minus 0.132],[0.334 #sym.plus.minus 0.122],[],
+  [rouge-m],[0.179 #sym.plus.minus 0.124],[0.181 #sym.plus.minus 0.124],[],
+  [rouge-l],[0.278 #sym.plus.minus 0.120],[0.304 #sym.plus.minus 0.180],[],
+  [Bleu]   ,[0.059 #sym.plus.minus 0.090],[0.077 #sym.plus.minus 0.065],[],
+  [*Accuracy*],[],[],[],
+),caption:[results #sym.plus.minus 1 standard deviation])
 
-#oasis-align(nlp_eval_table,[#glorem(num:60)])
+#oasis-align(nlp_eval_table,[#glorem(num:50)])
 
 #glorem(num:100)
