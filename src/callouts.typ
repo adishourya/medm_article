@@ -21,7 +21,7 @@
 
 // gray lorem
 #let glorem(num:int) = {
-  text(fill:white.darken(40%), [#lorem(num)])
+  text(fill:white.darken(20%), [#lorem(num)])
 } 
 
 

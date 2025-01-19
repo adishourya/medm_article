@@ -28,6 +28,9 @@
   - Major Tasks:
     - Finetuning with cxr-jpg
     - Accuracy template and Evaluation
+    - prompt evaluation
+    - Adding prompt template in appendix
+    - Adding examples from interpret tool in appendix
   - Minor Tasks:
     - Readme github
     - tool as a submodule in main repository

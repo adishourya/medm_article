@@ -3,46 +3,45 @@
 = Inspecting Saliency Maps <section_saliency>
 #plan[
 
-+ In our early model experiments we observed generations indicating model hallucinations when trained on a mixture of organically and synthetically generated question labels. This indicates that the LLM can pick up spurious signals from image features or text input IDs for a given pathology if scaling is inadequate. Most natural language metrics are poorly suited for evaluating medical question answering as noted by Singhal et al., and accuracy does not effectively capture the intermediate biases learned by such models.
++ Hallucinations -> spurious signals -> ill conditioned metrics (trust evaluation?)
 
-  - we can keep text input ids constant or independent of the image to make sure that the model learns mostly from image features but that has not lead to good performance for visual question answering on open ended questions in general domain.@kolling2020componentanalysisvisualquestion
++ we need more data ? but which ? more images or more questions sampled from the images
++ But they are expensive. we can identify signals from a poorly scaled model.
++ justify saliency in self attention as they are just the queries and the weights and we can inspect relation from both ways (image to response , response to image , question to image , image to question)
++ human alignment scores from lay user .(helpfulness and so on) . experts to do saliency evaluation
   
-  - This suggests that we require a larger volume of images or more sampled questions from our images with adequate noise in the text input IDs to effectively fine-tune our model.
-  
-  - But each of them is an expensive labelling task. But we can make more efforts in detecting the source of bad signals by inspecting source of saliency.Although saliency is not the same as explainability @bertrand2022saliency. Experts can sometimes find diagnostic indicators as saliency in self-attention is fundamentally tied to the weights of keys *K* and queries *Q* learnt by the layers.
-  
-  - This suggests we need an axis of evaluation; many vqa answers at human evaluation time get alignment scores.
+// (accuracy questions can be sampled from an ill conditioned dataset.)
+// - For an example on a badly scaled model we saw muted mean image to answer and high mean question to answer response on samples of open ended questions on a VQA Task.(need further testing :: I did only few examples).
 
-  - we feel the need for subjective evaluation of both the vision tower and LLM both in conjunction and independently. (with metrics like hit rate from medical experts)
-    - metrics like hit rate in the neighbourhood of true saliency @Saporta2022
-    - human evaluation for raw attentions from both vision tower and llm.
-  
-  // - For an example on a badly scaled model we saw muted mean image to answer and high mean question to answer response on samples of open ended questions on a VQA Task.(need further testing :: I did only few examples).
-
-
-+ Most of the ablation studies from @li2023llavamedtraininglargelanguageandvision focuses on increasing the number of layers in its LLM allowing it to better filter such bad signals from image features. (query from image patch to saliency on token from the last few layers.)
-
-  - LLava Med saw improvement across all pathologies while evaluating accuracy .
-
-  - However, we lack ablation studies on employing specialized vision tower. Although the SigLip Vision tower is shape optimal for most of the general domain tasks.Detecting abnormalities in radiological images need the model to learn both local and global image features.
-  
-  - Convolutional kernels excel at capturing fine details in images, a capability lacking in ViT models.Since Majority of the interest in Visual Question Answering in Radiology is detecting abnormalities in the image which requires the model learning signals from both distant and local features.
-  
-  - The number of operations required to relate signals from two arbitrary input or output positions grows in the distance between positions, linearly for Convolutional based sequence to sequence models @gehring2017convolutionalsequencesequencelearning @annotatedtransformer. This makes it more difficult to learn dependencies between distant positions. In the Transformer this is reduced to a constant number of operations.This made it easier to learn global signals from distant inputs even in earlier layers.
 
   
-  (eg :@zhang2024depthwiseconvolutionsvisiontransformers).
+  // (eg :@zhang2024depthwiseconvolutionsvisiontransformers).
   
-
-there are models that have saliency aware objective training @aware_saliency. we often use saliency aware segmentation @Saporta2022.
-  - since these models do not have saliency aware training . inspecting saliency adhoc is essential
-
-- !*Add extensive examples in appendix*
+// there are models that have saliency aware objective training @aware_saliency. we often use saliency aware segmentation @Saporta2022.
+//   - since these models do not have saliency aware training . inspecting saliency adhoc is essential
+#todo[!*Add extensive example set in appendix* ]
 ]
 
+In our early model experiments, we observed generations indicative of what is commonly referred to as model hallucinations @xu2024hallucinationinevitableinnatelimitation when trained on a mix of organically and synthetically generated question labels. This suggests that the LLMs can learn spurious signals from image features or text input IDs for a given pathology when scaling is inadequate. As noted by @Singhal2023, most natural language metrics are poorly suited for evaluating medical question answering, and accuracy alone fails to capture the intermediate biases that such models learn.  
 
 
-== Raw Attentions
+To mitigate this, one approach is to keep text input IDs constant or independent of the image, ensuring that the model primarily learns from image features. However, this approach has not led to good performance for visual question answering (VQA) on open-ended questions in general domains @kolling2020componentanalysisvisualquestion. This suggests that a larger volume of images or more sampled questions with adequate noise in the text input IDs is required for effective fine-tuning.But both of the approaches are constrained by the high cost of labeling.  
+
+But more efforts can be made on detecting the source of bad signals by analyzing saliency maps. Although saliency is not the same as explainability @bertrand2022saliency, experts can often identify diagnostic indicators, as saliency in self-attention is fundamentally tied to the weights of queries  and keys learnt by the layers of the model. For medical VQA, model generated answers are often assigned alignment scores during human evaluation,we believe we need a similar alignment score for saliency analysis a subjective metric based on neighborhood hit rate @Saporta2022 evaluated by medical experts.
+
+// Interpretability analysis has been in more demand lately in the medical field for applications like COVID-19 analysis and pathological retinal image categorization, among others.
+
+We follow from the works of @stan2024lvlminterpretinterpretabilitytoollarge to inspect raw attentions and mean saliency analysis and newer methods like Attention rollout @abnar2020quantifyingattentionflowtransformers which makes efforts on quantifying flow of attention across layers.
+
+== Raw Attentions <section_rawattention>
+#plan[
+  + To inspect relationship its as easy as collecting queries from the interested region and plot saliency on the keys from the input ids or the response.
+  
+  // Heatmaps that show average attentions between image to- kens and query tokens as well as answer tokens enables the user to better understand the global behavior of raw atten- tions.
+
+  // between image patches and the selected tokens to obtain insight on how the model at- tends to the image when generating each token. Conversely, Figure 2b shows how a user can select image patches and visualize the degree to which each output tokens attends to that specific location.
+]
+
 #let response_text = "Yes the Bone appears to be broken as there is a broken bone sticking out of the side of the leg"
 
 #let sailent_text = {
@@ -77,7 +76,7 @@ figure(rect(fill:my_colors.alt_fg , radius: 5pt,[#sailent_text]),caption:[Salien
 #wrap-content(raw_attention_fig,glorem(num:160), align:bottom+right)
 
 
-== Attention Rollout and Attention Flow 
+== Attention Rollout and Attention Flow <section_attentionflow>
 #plan[
   
 + Models based on self attention often highlight disjointed patches @zhang2024depthwiseconvolutionsvisiontransformers rather than contiguous areas because:
