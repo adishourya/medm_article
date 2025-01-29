@@ -63,11 +63,11 @@
 
    // nodes
 	blob(nodes.corpus,node_values.corpus, tint: yellow, shape: house),
-	blob(nodes.filter0,node_values.pathology, tint:orange, shape: hexagon),
+	blob(nodes.filter0,node_values.pathology, tint:orange),
 	blob(nodes.llm,node_values.llm, tint: white),
 	blob(nodes.bucket0,node_values.literature, tint: gray),
 	blob(nodes.bucket1,node_values.related_image,tint:gray),
-	blob(nodes.filter,node_values.filter,tint:orange),
+	blob(nodes.filter,node_values.filter,tint:orange,shape:hexagon),
    node(nodes.bin,node_values.bin),
 	blob(nodes.final,node_values.final, tint: green, shape:house),
 

@@ -1,11 +1,6 @@
-#import "template.typ" : my_colors , my_global
+#import "template.typ": *
 
-// use this to align a large body of caption along side the image
-#import "@preview/oasis-align:0.1.0": *
-// use this to simply wrap an image in a huge body of text . if its an image make sure to set width
-#import "@preview/wrap-it:0.1.0": wrap-content
-
-
+// callouts 
 // convert content to string
 #let to-string(content) = {
   if content.has("text") {
@@ -121,7 +116,7 @@
 	radius: block-radius,
 	width: 100%,
 	{
-		text(fill: rgb("#086DDD"), weight: 700)[#icon("info") Section Plan]
+		text(fill: rgb("#086DDD"), weight: 700)[#icon("info") Section Plan Scratchpad]
 		text(size: 6pt)[#content]
 	})
 }
@@ -157,4 +152,5 @@ else {
 
 #let plan_line = line(length:100%, stroke:(paint:my_colors.gradient_color, dash:"dashed",thickness:1pt))
 // #let plan(abcd) = [_section plan:_#text(7pt,style: "italic",abcd) #plan_line]
+
 

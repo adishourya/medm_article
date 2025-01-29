@@ -49,14 +49,14 @@
   (0,4.3),
   (1, 2.0539),
   (2, 1.9498),
-  (3, 1.9231),
-  (4, 1.9228),
-  (5, 1.9201),
-  (6, 1.9181),
-  (7, 1.9176),
-  (8, 1.9179),   
-  (9, 1.9172),
-  (10, 1.9181) 
+  (3, 1.8831),
+  (4, 1.8628),
+  (5, 1.8501),
+  (6, 1.8481),
+  (7, 1.8476),
+  (8, 1.8379),   
+  (9, 1.8272),
+  (10, 1.8381) 
 );
 
 
@@ -89,12 +89,14 @@
   
     x-label:"epochs",
     y-label:"Eval Loss",
-    legend: "inner-north-east",
+    // legend: "inner-north-east",
+    legend:"inner-north",
+    // legend:"north",
     {
 
       plot.add(medpix_eval,label:[#text(size:6pt)[Medpix]],style:style1)
       plot.add(roco_eval,label:[#text(size:6pt)[ROCO]],style:style2)
-      plot.add(roco_medpix_anneal,label:[#text(size:6pt)[ROCO+Medpix Annealed]],style:style3)
+      plot.add(roco_medpix_anneal,label:[#text(size:6pt)[ROCO+Medpix Annealed (CL)]],style:style3)
 
       plot.annotate({
         content(

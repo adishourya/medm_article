@@ -1,5 +1,5 @@
 //---- Global Variables-----
-#let all_off = false
+#let all_off = true
 #let my_global = (
   hide_section_plan : false or all_off,
   hide_comments : false or all_off,
@@ -14,6 +14,7 @@
 #import "@preview/oasis-align:0.1.0": *
 // use this to simply wrap an image in a huge body of text . if its an image make sure to set width
 #import "@preview/wrap-it:0.1.0": wrap-content
+
 
 // --------- our colors -----
 
@@ -51,8 +52,9 @@
 #let list_colors = (black,my_colors.accent)
 
 
-
 #let my_template(doc) = [
+
+  
 
   // set column layout
   #let column_layout = 1

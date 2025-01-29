@@ -1,4 +1,4 @@
-#import "../callouts.typ": *
+#import "../callouts.typ":* 
 = Introduction <section_introduction>
 
 

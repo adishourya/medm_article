@@ -1,5 +1,16 @@
 %------ Atleast cite 🤞 ~60 . paligemma does (135)
 
+% curriculum learning for training recipe
+@misc{srinivasan2022curriculumlearningdataefficientvisionlanguage,
+      title={Curriculum Learning for Data-Efficient Vision-Language Alignment}, 
+      author={Tejas Srinivasan and Xiang Ren and Jesse Thomason},
+      year={2022},
+      eprint={2207.14525},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2207.14525}, 
+}
+
 % convolutional sequence to sequence
 @misc{gehring2017convolutionalsequencesequencelearning,
       title={Convolutional Sequence to Sequence Learning}, 
@@ -59,6 +70,21 @@ publisher = {BMVA},
 year      = {2023},
 url       = {https://papers.bmvc2023.org/0771.pdf}
 }
+
+% saliency covid19
+@ARTICLE{Mondal_covid_explainability,
+  author={Mondal, Arnab Kumar and Bhattacharjee, Arnab and Singla, Parag and Prathosh, A. P.},
+  journal={IEEE Journal of Translational Engineering in Health and Medicine}, 
+  title={xViTCOS: Explainable Vision Transformer Based COVID-19 Screening Using Radiography}, 
+  year={2022},
+  volume={10},
+  number={},
+  pages={1-10},
+  abstract={Objective: Since its outbreak, the rapid spread of COrona VIrus Disease 2019 (COVID-19) across the globe has pushed the health care system in many countries to the verge of collapse. Therefore, it is imperative to correctly identify COVID-19 positive patients and isolate them as soon as possible to contain the spread of the disease and reduce the ongoing burden on the healthcare system. The primary COVID-19 screening test, RT-PCR although accurate and reliable, has a long turn-around time. In the recent past, several researchers have demonstrated the use of Deep Learning (DL) methods on chest radiography (such as X-ray and CT) for COVID-19 detection. However, existing CNN based DL methods fail to capture the global context due to their inherent image-specific inductive bias. Methods: Motivated by this, in this work, we propose the use of vision transformers (instead of convolutional networks) for COVID-19 screening using the X-ray and CT images. We employ a multi-stage transfer learning technique to address the issue of data scarcity. Furthermore, we show that the features learned by our transformer networks are explainable. Results: We demonstrate that our method not only quantitatively outperforms the recent benchmarks but also focuses on meaningful regions in the images for detection (as confirmed by Radiologists), aiding not only in accurate diagnosis of COVID-19 but also in localization of the infected area. The code for our implementation can be found here - https://github.com/arnabkmondal/xViTCOS. Conclusion: The proposed method will help in timely identification of COVID-19 and efficient utilization of limited resources.},
+  keywords={COVID-19;Transformers;Feature extraction;Computed tomography;X-ray imaging;Radiography;Predictive models;AI for COVID-19 detection;CT scan and CXR;deep learning;vision transformer},
+  doi={10.1109/JTEHM.2021.3134096},
+  ISSN={2168-2372},
+  month={},}
 
 
 
@@ -379,6 +405,22 @@ year = {2016},
       url={https://arxiv.org/abs/2005.00928}, 
 }
 
+% also does rollout and other methods
+@INPROCEEDINGS{chefer_rollout,
+  author={Chefer, Hila and Gur, Shir and Wolf, Lior},
+  booktitle={2021 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}, 
+  title={Transformer Interpretability Beyond Attention Visualization}, 
+  year={2021},
+  volume={},
+  number={},
+  pages={782-791},
+  abstract={Self-attention techniques, and specifically Transformers, are dominating the field of text processing and are becoming increasingly popular in computer vision classification tasks. In order to visualize the parts of the image that led to a certain classification, existing methods either rely on the obtained attention maps or employ heuristic propagation along the attention graph. In this work, we propose a novel way to compute relevancy for Transformer networks. The method assigns local relevance based on the Deep Taylor Decomposition principle and then propagates these relevancy scores through the layers. This propagation involves attention layers and skip connections, which challenge existing methods. Our solution is based on a specific formulation that is shown to maintain the total relevancy across layers. We benchmark our method on very recent visual Transformer networks, as well as on a text classification problem, and demonstrate a clear advantage over the existing explainability methods. Our code is available at: https://github.com/hila-chefer/Transformer-Explainability.},
+  keywords={Visualization;Computer vision;Head;Text categorization;Neural networks;Transformers;Pattern recognition},
+  doi={10.1109/CVPR46437.2021.00084},
+  ISSN={2575-7075},
+  month={June},}
+
+
 %interpret tool :
 @misc{stan2024lvlminterpretinterpretabilitytoollarge,
       title={LVLM-Interpret: An Interpretability Tool for Large Vision-Language Models}, 
@@ -388,6 +430,17 @@ year = {2016},
       archivePrefix={arXiv},
       primaryClass={cs.CV},
       url={https://arxiv.org/abs/2404.03118}, 
+}
+
+% inspecting raw attention
+@misc{huang2019attentionattentionimagecaptioning,
+      title={Attention on Attention for Image Captioning}, 
+      author={Lun Huang and Wenmin Wang and Jie Chen and Xiao-Yong Wei},
+      year={2019},
+      eprint={1908.06954},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/1908.06954}, 
 }
 
 % benchmarking saliency
@@ -455,6 +508,15 @@ year = {2016},
       archivePrefix={arXiv},
       primaryClass={cs.CV},
       url={https://arxiv.org/abs/1901.07042}, 
+}
+
+%cxr dataset builder
+@article{bae2024ehrxqa,
+  title={EHRXQA: A multi-modal question answering dataset for electronic health records with chest x-ray images},
+  author={Bae, Seongsu and Kyung, Daeun and Ryu, Jaehee and Cho, Eunbyeol and Lee, Gyubok and Kweon, Sunjun and Oh, Jungwoo and Ji, Lei and Chang, Eric and Kim, Tackeun and others},
+  journal={Advances in Neural Information Processing Systems},
+  volume={36},
+  year={2024}
 }
 
 %pubmedclip [they had the idea of gradcam]

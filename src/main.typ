@@ -2,7 +2,6 @@
 // use #todo[todo text here]  <- to add todo
 //--------------------------------
 
-#import "callouts.typ": *
 #import "template.typ" : *
 #show: my_template
 
@@ -19,7 +18,6 @@
 // linguistic tasks ?
 
 #show_title(title)
-
 
 
 // authors
@@ -46,10 +44,12 @@
 
 
 
+
 // abstract
 #let abstract = [#lorem(150)]
 #show_abstract(abstract)
 
+// #set par.line(numbering:n => text(purple,size:5pt)[#n])
 
 // #columns(1)[
 
@@ -83,15 +83,14 @@
 //-------------------
 #include "sections/conclusion.typ"
 
-//-------------------
+= Discussion
 
 
+= Data Availability
+= Code Availability
 
 
 // ]
-// -- end column
-
-// #pagebreak()
 
 #bibliography("refs.bib",style: "institute-of-electrical-and-electronics-engineers")
 

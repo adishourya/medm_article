@@ -5,7 +5,8 @@
 + what we expect from an instruction tuned. model
   - human aligned , signals learnt in pretraining as we saw from @section_instruct_models
 
-+ what more needs to be done
++ what more needs to be done:
+  - design a curriculum learning.
   - Train on a medical instruct dataset . not frequently available with the latest (also smallest) multimodall llm.
   - briefly talk about the influence of the size of the dataset set up @section_scaling
 
@@ -40,6 +41,7 @@
 	+ treemap of the dataset.
 	+ (did not work with medpix @siragusa2024medpix20comprehensivemultimodal alone)
 	#todo[adjust depth of treemaps... depth 2 should be readable]
+ -  The lack in scale and diversity of visual concepts (with respect to vision/language-only counterparts) makes it hard for V+L models to perform adequately in the wild.
 
 ]
 
@@ -123,7 +125,15 @@ figure(
   [#glorem(num:200)]
 )
 
-
+=== Designing Curriculum Learning <section_curriculum>
+#plan[
+  - Medpix has extensive doctor notes . and those are great intermediate reasoning to learn. 
+  - Curriculum learning @srinivasan2022curriculumlearningdataefficientvisionlanguage
+  - our filteration was hand labelled small generations on the earlier epoch
+  - llava med also does this but does not give out examples at all.
+  
+]
+#glorem(num:180)
 
 == Finetunining <section_finetuning>
 #plan[
@@ -148,7 +158,7 @@ figure(
 		- $L = (D_c/ D)^(alpha)$ ; $alpha_d = 0.095$ ; $D_c = 5.4 * 10^13$ tokens;
 			- But this Dc is calculated for full pretrain. we need for finetuning [we will assume the base model size also followed scaling law]. so it should be considerably smaller than 10^13.and our results would only be approximate as we only have 3 datasets.
 			- remember : pmc15m @zhang2024pmcvqavisualinstructiontuning is double the size of mimic-cxr @johnson2019mimiccxrjpglargepubliclyavailable.
-			#comment[add number of images in each line graph]
+			// #comment[add number of images in each line graph]
 	
 		]
 
