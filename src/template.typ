@@ -1,5 +1,5 @@
 //---- Global Variables-----
-#let all_off = true
+#let all_off = false
 #let my_global = (
   hide_section_plan : false or all_off,
   hide_comments : false or all_off,
@@ -34,7 +34,9 @@
   
   gradient_color:  gradient.linear(..color.map.crest),
   comment_color : gradient.linear(..color.map.flare),
-  cmap_color : gradient.linear(..color.map.icefire)
+  cmap_color : gradient.linear(..color.map.icefire),
+  text_cmap_color:
+  gradient.linear(..color.map.crest)
 
 )
 
@@ -116,6 +118,14 @@
 
   	v(.3em)
   	text(fill: my_colors.heading1_color, weight: "bold", 1.25em, content)
+
+ }
+ 
+  #show heading.where(level: 2): content => context{
+
+  	v(.1em)
+  	text(weight: "bold", 1.1em, content)
+  	v(.3em)
 
  }
   

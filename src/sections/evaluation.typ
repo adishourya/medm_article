@@ -21,7 +21,7 @@ table(
   [rouge-m],[0.179 #sym.plus.minus 0.124],[0.181 #sym.plus.minus 0.124],[],
   [rouge-l],[0.278 #sym.plus.minus 0.120],[0.304 #sym.plus.minus 0.180],[],
   [Bleu]   ,[0.059 #sym.plus.minus 0.090],[0.077 #sym.plus.minus 0.065],[],
-  [*Accuracy*],[],[],[],
+  [*Accuracy*],[0.315],[0.366],[],
 ),caption:[results #sym.plus.minus 1 standard deviation])
 
 #oasis-align(nlp_eval_table,[#glorem(num:50)])

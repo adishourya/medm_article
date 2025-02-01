@@ -95,22 +95,29 @@ for word in response_text.split(){
     linebreak()
   }
   if word == "broken" and count_broken == 0{
-    text(size:6pt,fill:red.darken(10%),style: "italic",[*#word*]) + " "
+    text(size:6pt,fill:green.darken(10%),style: "italic",[*#word*]) + " "
     count_broken +=1
     word_count +=1
   }
   else if word == "broken" and count_broken ==1{
-    text(size:6pt,fill:red.lighten(20%),style: "oblique", [*#word*]) + " "
+    text(size:6pt,fill:green.lighten(20%),style: "oblique", [*#word*]) + " "
     word_count +=1
   }
   else{
-    text(size:6pt,fill:my_colors.cmap_color,word) + " "
+    text(size:6pt,fill:my_colors.text_cmap_color,word) + " "
     word_count +=1
   }
 }
 }
 
-#let raw_fig =  figure(rect([Layer 16 Head 8]+ image("../../our_images/saliency/bone1_raw.png",height: 100pt, width:100pt)),caption:[Interested Region])
+#let raw_fig =  figure(
+  rect(radius:5pt,stroke:black,fill:my_colors.alt_fg.lighten(30%), 
+
+  [#text(size:8pt)[Layer 16 Head 8]] +
+  v(-0.6em)+
+  image("../../our_images/saliency/bone1_raw.png",height: 100pt, width:100pt)
+),
+caption:[Interested Region])
 
 #let raw_attention_fig = grid(rows:2,row-gutter: 8pt,
 raw_fig,

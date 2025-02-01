@@ -9,7 +9,7 @@
 // Title
 
 #let title = [
-	*Adapting Generalist Multimodal Language Models for #linebreak()
+	*Adapting Lightweight Multimodal Language Models for #linebreak()
 	Radiological Visual-Linguistic Tasks #linebreak()
 	A Practical Approach*
 ]

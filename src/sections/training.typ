@@ -169,7 +169,7 @@ figure(
 		caption: [our results currently],
 		// placement: auto,
 		// scope: "parent"
-	),[#glorem(num:200)])
+	),[#glorem(num:130)])
 
 
 

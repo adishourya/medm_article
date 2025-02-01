@@ -10,15 +10,22 @@
     + Most offer same like phi-3 and paligemma.!
     + pick LVLM that show great results at transfer.
     + we picked paligemma-448 and paligemma-896 model for all of our experiments.
+      - also they disclose their datasets that they have pretrained on.
+      - it has been pretrained on open web datasets that may include some radiological images . so we might expect the model to have good zero shot performance on .
 ]
-Large Multimodal models usually get trained in stages. The first step of training is usually referred to as *pre-training* where we train the model on a big corpus like @changpinyo2021cc12m @sharma2018conceptual @DBLP:journals1 @DBLP:journals2 . These datasets are usually called Instruct datasets. Models tuned on such datasets are in turn called *Instruct models* which act as the backbone for our application.One of the primary expectations of these models is to perform exceptionally well in next-token prediction at pre-training .This core functionality enables the model to generate coherent and contextually appropriate responses depending on the nature of the prompt
+Large Multimodal models usually get trained in stages. The first step of training is usually referred to as *pre-training* where we train the model on a big corpus like @changpinyo2021cc12m @sharma2018conceptual @DBLP:journals1 @DBLP:journals2 . These datasets are usually called Instruct datasets. Models tuned on such datasets are in turn called *Instruct models* which act as the backbone for our application. One of the primary expectations of these models is to perform exceptionally well in next-token prediction at pre-training .This core functionality enables the model to generate coherent and contextually appropriate responses depending on the nature of the prompt.
 
 Pre-training on large and diverse datasets is essential, as it allows these models to capture and learn diverse signals across variety of domains which enables us to do *transfer learning* .The performance of the instruction tuned model is also measured on how well they perform in downstream applications without needing extensive task specific training.
 
-Models besides being trained on parallel image-text interleave data also get supervised on serialized chat data which covers various topics to reflect human preferences on different aspects such as instruction following, truthfulness, honesty and helpfulness. Most of the models developed by large organizations undergo robust internal evaluations to measure toxicity, profanity, and other potential issues in the generated captions.Its a common practice to further train on datasets such as the FairFace dataset @karkkainenfairface with the intentions that the model does not capture biases originating from Race, Gender or Age. 
+Models besides being trained on parallel image-text interleave data also get supervised on serialized chat data which covers various topics to reflect human preferences on different aspects such as instruction following, truthfulness, honesty and helpfulness. Most of the models that are deployed undergo robust internal evaluations to measure toxicity, profanity, and other potential issues in the generated captions.Its a common practice to further train on datasets such as the FairFace dataset @karkkainenfairface with the intentions that the model does not capture biases originating from Race, Gender or Age. 
 
 
-For our experiments, we select *Paligemma-mix-448* and *Paligemma-mix-896* @beyer2024paligemma as our base model across all of our experiments as they have demonstrated to be extremely versatile on transfer across many tasks and.By leveraging these models, we aim to obtain the current boundaries of what we can achieve fine tuning the instruction tuned LVLMs in terms of both accuracy and safety in medical domains.
+// We select *Paligemma-mix-448* and *Paligemma-mix-896* @beyer2024paligemma as our base model across all of our experiments #comment[also publically available . and pretrained on disclosed datastet like @pretrain_pali_changpinyo-etal-2022-may @pretrain_pali_piergiovanni2022pretrainingimagelanguagetransformersopenvocabulary @pretrain_pali_sharma-etal-2018-conceptual @pretrain_pali_Srinivasan_2021  ] as they have demonstrated to be extremely versatile on transfer across many tasks and.By leveraging these models, we aim to obtain the current boundaries of what we can achieve fine tuning the instruction tuned LVLMs in terms of both accuracy and safety in medical domains.
+
+We select *PaliGemma-mix-448* and *PaliGemma-mix-896* @beyer2024paligemma as our base models across all of our experiments. These models are particularly well-suited for our study, as they have been pretrained on a diverse and well-curated collection of publicly available datasets @pretrain_pali_changpinyo-etal-2022-may, @pretrain_pali_piergiovanni2022pretrainingimagelanguagetransformersopenvocabulary, @pretrain_pali_sharma-etal-2018-conceptual, @pretrain_pali_Srinivasan_2021. This transparency in pretraining data stands in contrast with other approaches where such details are often undisclosed. This enables a better understanding of the model's zero shot capabilities and limitations.
+
+The model demonstrates to be extremely versatile on transfer across many tasks.By leveraging these models, we aim to obtain the current boundaries of what we can achieve fine tuning lightweight VLM in terms of both accuracy and safety in medical domains.
+
 
 #coherence[
   + repeated use of large diverse dataset.
@@ -36,7 +43,7 @@ caption: [Model Architecture for Generalist LVLMs @beyer2024paligemma],
 placement: auto,
 )<figure_model>
 
-Most VLMs consist of a Vision Tower, a projector, a connector, and a mini language model, typically following the architecture outlined in @figure_model. Paligemma specifically uses a SigLIP @zhai2023sigmoidlosslanguageimage  Vision Tower, with roughly 400 million parameters, and the Gemma-2B @gemmateam2024gemma2improvingopen as its mini language model. Notably, during the multimodal pretraining stage of the model, no weights are frozen in time, allowing all parameters to learn during backpropagation.
+Most lightweight VLMs consist of a Vision Tower, a projector, a connector, and a mini language model, typically following the architecture outlined in @figure_model. Paligemma specifically uses a SigLIP @zhai2023sigmoidlosslanguageimage  Vision Tower, with roughly 400 million parameters, and the Gemma-2B @gemmateam2024gemma2improvingopen as its mini language model. Notably, during the multimodal pretraining stage of the model, no weights are frozen in time, allowing all parameters to learn during backpropagation.
 
 We now present further details about the main components of the architecture.
 
