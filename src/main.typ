@@ -29,7 +29,9 @@
   #text(size:8pt,
   "chang.sun@maastrichtuniversity.nl")],
   
-  align(center)[me #link(<affiliation_b>,super[b])\
+  align(center)[me #link(<affiliation_b>,super[b])
+  #h(-0.25em)#super[,]#h(-0.25em)
+  #link(<affiliation_star>,super[\*])\
   #text(size:8pt,
   "my_email")]
 )
@@ -42,6 +44,8 @@
 [#super([b]) Department of Advanced Computing Sciences, Faculty of Science and Engineering, Maastricht University, Maastricht, The Netherlands
 ])<affiliation_b>
 
+#text(5pt,style:"italic",
+[#super([\*]) work done during internship and stuff])<affiliation_star>
 
 
 
@@ -75,7 +79,7 @@
 #include "sections/saliency.typ"
 
 //-------------------
-#include "sections/experiments.typ"
+// #include "sections/experiments.typ"
 
 //-------------------
 #include "sections/further.typ"
@@ -83,11 +87,27 @@
 //-------------------
 #include "sections/conclusion.typ"
 
-= Discussion
 
+#let icon(name) = {
+	let path = "../icons/" + name + ".svg"
+	box(
+		height: .7em,
+		inset: (x: 0.05em, y: -0.22em),
+		image(path, 
+		height: 1.15em
+		)
+	)
+}
 
 = Data Availability
+- Medpix for annealing data : #emoji.face.hug 
+  #link("https://huggingface.co/datasets/adishourya/MEDPIX-ShortQA")
+ 
 = Code Availability
+- All the code that went into finetuning our models and their model card can be found in our #icon("github-mark") #link("https://github.com/adishourya/MedM")
+
+- our fork of @stan2024lvlminterpretinterpretabilitytoollarge can be found here: #icon("github-mark") #link("https://github.com/adishourya/lvlm-interpret")
+
 
 
 // ]

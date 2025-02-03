@@ -1,5 +1,5 @@
 //---- Global Variables-----
-#let all_off = false
+#let all_off = true
 #let my_global = (
   hide_section_plan : false or all_off,
   hide_comments : false or all_off,
@@ -50,6 +50,16 @@
   my_colors.accent.darken(30%),
 )
 
+#let icon(name) = {
+	let path = "../icons/" + name + ".svg"
+	box(
+		height: .7em,
+		inset: (x: 0.05em, y: -0.1em),
+		image(path, 
+		height: 1em
+		)
+	)
+}
 
 #let list_colors = (black,my_colors.accent)
 
@@ -57,7 +67,7 @@
 #let my_template(doc) = [
 
   
-
+  #set footnote(numbering: "*")
   // set column layout
   #let column_layout = 1
   
@@ -130,7 +140,7 @@
  }
   
   // underline all links and refernce
-  #show link: it => {text(my_colors.link_color, underline(it))}
+  #show link: it => {text(my_colors.link_color,it)}
   // #show ref: it => {text(my_colors.link_color, underline(it))}
   #show ref: it => {text(my_colors.link_color, it)}
   
@@ -204,7 +214,7 @@
   		]
   	#linebreak()
   	*Date* : #datetime.today().display("[month repr:long] [day], [year]")\
-  	*URL* : #underline(link("https://github.com/adishourya/MedM"))
+  	*URL* : #icon("github-mark") #link("https://github.com/adishourya/MedM")
   		#align(right)[
   		#image("../icons/Maastricht_University_logo_(2017_new_version).svg", height: 15pt)
   	]

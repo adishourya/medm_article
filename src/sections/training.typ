@@ -135,15 +135,9 @@ figure(
 ]
 #glorem(num:180)
 
-== Finetunining <section_finetuning>
-#plan[
-  + Formally describe LORA
-]
-#glorem(num:300)
 
 
-
-== Scaling Law  <section_scaling>
+== Finetuning and Scaling Law  <section_scaling>
 #plan[
 	+ overview of scaling law @kaplan2020scalinglawsneurallanguage
 		- show that the power law applicable to transformer based architecture also extends to finetuning with lora

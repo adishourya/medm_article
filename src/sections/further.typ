@@ -1,6 +1,6 @@
 #import "../callouts.typ": * 
 
-= Discussion
+= Discussion and Limitation
 #plan[
 + ablation studies with Depth-Wise Convolutions in Vision Transformers for Efficient Training on Small Datasets @zhang2024depthwiseconvolutionsvisiontransformers.
 
@@ -16,3 +16,4 @@
   - However, we lack ablation studies on employing specialized vision tower. Although the SigLip Vision tower is shape optimal for most of the general domain tasks.Detecting abnormalities in radiological images need the model to learn both local and global image features.
   
 ]
+#glorem(num:120)
