@@ -23,15 +23,27 @@
 == Data Curation <section_curation>
 #plan[
 + Most soa models start with dataset curation and often end up with the largest voulme of high quality medical data.
+  - Training a state of the art medical model often start with curating a state of the art medical dataset.
+  
 + Briefly discuss what roco does to build their pipeline.
 + most instruct models are made from human labelers. But some models like @abdin2024phi also trained on synthetic data. 
+
 + instruct dataset 1 to gain conceptual understanding like cc12m @changpinyo2021cc12m.
 + Task specific instruct dataset 2 like roco @pelka2018roco , @johnson2019mimiccxrjpglargepubliclyavailable.
+
 + need for validation of labels in medical instruct dataset
 + summarize @section_datamix @section_synthetic @section_annealing 
 	
 ]
-#glorem(num:100)
+
+Most of the time spent on developing the State of the art medical question answering model goes into curating the state of the art (biggest) dataset.
+- Medpalm @Singhal2023 curates from multiple open source datasets (@MedicationQA, @PubMedQA, @MedMCQA, @LiveQA , @MedQA)
+- Llava Med @li2023llavamedtraininglargelanguageandvision curates (PMC 15M)
+- PMC VQA @zhang2024pmcvqavisualinstructiontuning curates @xmcmic_pmc_vqa.
+- Most of the publically available datasets for finetuning do
+  - extensive label validation
+  - Deduplcation
+  - and most importantly remove personally identifiable information.
 
 
 === Determining the Data Mix <section_datamix>
@@ -150,13 +162,25 @@ figure(
 		+ For large models trained with a limited dataset with early stopping:
 		- that is we assume that our model is big enough , and we have enough compute . then new tokens needed to get the desired evaluation loss
 		- $L = (D_c/ D)^(alpha)$ ; $alpha_d = 0.095$ ; $D_c = 5.4 * 10^13$ tokens;
+    - But not this!. we will have to use @zhang2024when.  which requires us to fit a line. no precalculated constants. 
 			- But this Dc is calculated for full pretrain. we need for finetuning [we will assume the base model size also followed scaling law]. so it should be considerably smaller than 10^13.and our results would only be approximate as we only have 3 datasets.
 			- remember : pmc15m @zhang2024pmcvqavisualinstructiontuning is double the size of mimic-cxr @johnson2019mimiccxrjpglargepubliclyavailable.
 			// #comment[add number of images in each line graph]
 	
 		]
 
-// #include "sample.typ"
+#let lora_config = table(
+  columns: 2,
+  [lora config #icon("lora")],[value],
+  [r],[12],
+  [lora_alpha],[32],
+  [target_modules],
+  [`{q,k,v,o}_proj,
+{up,down}_proj`],
+  [task_type],[`causal_lm`],
+)
+
+#wrap-content(align:top+right,lora_config,[#glorem(num:80)])
 
 #wrap-content(align:left,figure(
 		include "../../graphs/test_losses.typ",
@@ -165,11 +189,9 @@ figure(
 		// scope: "parent"
 	),[#glorem(num:130)])
 
+ 
 
 
 
 
 
-
-
-#glorem(num:100)

@@ -1,9 +1,26 @@
 #import "../callouts.typ": *
 #import "../code_blocks/code.typ" : *
 
-
+#pagebreak()
 = Appendix
-- there are lots of prompt techniques we can talk about
+
+- Finetuning Traning Arguments
+
+#let training_args = table(
+  columns: 2,
+  [Training Args],[Value],
+  [learning_rate],[$1e-5$],
+  [lr_schedule],[`constant`],
+  [label_smoothing],[0.0],
+  [weight_decay],[0.0],
+  [fp16],[True],
+  [gradient accumulation],[16],
+  [batch_size],[6],
+)
+
+#training_args <table_training_args>
+
+- All prompts are taken verbatim from @Singhal2023
 - for text based base llms from @li2023llavamedtraininglargelanguageandvision
 #figure(prompt1,caption:[]) <prompt_template1>
 
@@ -16,13 +33,9 @@
 ) <prompt_template2>
 
 
-- we can show bad examples base text only llms make . 
-	
-
-- table for cxcr-jpg
 #import "../code_blocks/tables.typ" : cxr_table_conditions_table
 
-#cxr_table_conditions_table
+// #cxr_table_conditions_table
 
 #tasks[
   #todo[Before End of Feb]
@@ -68,18 +81,4 @@
 #let bone1_generation = [Yes, there is a visible fracture in the image. The fracture is a crack in the bone, which is a result of the impact or force that caused the bone to break. The broken bone is visible as a jagged edge on the side of the metal object, which is a bone fragment.]
 
 
-
-#let bone1_saliency_figure = grid(columns: 3,
-figure(image("../../our_images/saliency/bone1.jpg"),caption:[]),
-
-grid(rows: 2, columns: 2,
-figure(image("../../our_images/saliency/bone1_patch.png"),caption:[]),
-rect[saliency text],
-
-figure(image("../../our_images/saliency/bone1_raw.png"),caption:[]),
-rect[head number , layer number]
-)
-)
-
-#bone1_saliency_figure
 

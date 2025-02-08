@@ -1,7 +1,7 @@
 #import "../callouts.typ": * 
 #import "@preview/mannot:0.2.0": * // for annotating equations
 
-= Inspecting Saliency Maps <section_saliency>
+= Inspecting Saliency Maps #icon("tick") <section_saliency>
 #plan[
 
 + Hallucinations -> spurious signals -> ill conditioned metrics (trust evaluation?)
@@ -40,7 +40,7 @@ We believe more efforts can be made on detecting the source of bad signals by an
 
 In our experiments, we follow from the works of @stan2024lvlminterpretinterpretabilitytoollarge, @chefer_rollout and conduct saliency analysis on the intermediate layers of the LLM. As prior to the concatenation layer, there is no interaction between the text input IDs and the image features. In many fine-tuning schemes for VLMs in general domains, the weights of the vision tower are typically frozen, and only the weights of the LLM are trained. This approach ensures that the image features, up to the projection layer, remain unchanged, with the expectation that the attention heads of the LLM will learn to filter and select  only the relevant signals to guide the generation process. We visualize and analyze the interactions between the text input IDs, image features, and response tokens that occurs exclusively within the attention heads of the LLM.
 
-We later visualize our saliency on the image features of a fine-tuned SIGLIP with methods like attention rollout @abnar2020quantifyingattentionflowtransformers which makes efforts on quantifying flow of attention across layers of a transformer model.
+// We later visualize our saliency on the image features of a fine-tuned SIGLIP with methods like attention rollout @abnar2020quantifyingattentionflowtransformers which makes efforts on quantifying flow of attention across layers of a transformer model.
 
 == Raw Attentions <section_rawattention>
 #plan[
@@ -145,9 +145,12 @@ raw_attention_text)]
 
   // - but we can also select image patches from image . (here we select image patches in red) and the plot the saliency on the keys of the response id at @fig_rawattention_text
 
-  We can use raw attention to perform saliency analysis by examining the interactions between queries and keys, this interaction can be seen as attempting to search for affinity or relevance of an interesting token with the rest. This relation is important as a collection of such relations ultimately guides the model's generation. In earlier layers, attention can be noisy compared to convolutional-based models, where saliency appears more contiguous. This is primarily because capturing relationships between features requires  $O(n)$ operations for convolutional sequence-to-sequence models, while self-attention mechanisms can achieve this in constant time $O(1)$, making them more efficient and scalable @annotatedtransformer. However, self-attention suffers from low resolution, which was addressed with the advent of multi-head attention @vaswani2023attentionneed
+  We can use raw attention to perform saliency analysis by examining the interactions between queries and keys, this interaction can be seen as attempting to search for affinity or relevance of an interesting token with the rest. This relation is important as a collection of such relations ultimately guides the model's generation. In earlier layers, attention can be noisy compared to convolutional-based models, where saliency appears more contiguous. This is primarily because capturing relationships between features requires  $O(n)$ operations for convolutional sequence-to-sequence models, while self-attention mechanisms can achieve this in constant time $O(1)$, making them more efficient and scalable @annotatedtransformer. Like convolutional models, self-attention-based models learn higher levels of abstraction as they propagate through the layers. So it becomes interesting to search for such relations in the last few layers , In @fig_raw_attention_image we inspect 8th attention head of the penultimate layer.
   
-  Inspecting these relationships is easy as it only involves collecting queries from target tokens and visualizing their attention over the keys of other tokens, either within the same or across different modalities. In @fig_raw_attention_image, we inspect a single head of attention by collecting #text(fill:green)[all response tokens] as the target query and plotting the average saliency over the #text(fill:red)[image] (higher saliency highlighted in red) .Like convolutional models, self-attention-based models learn higher levels of abstraction as they propagate through the layers. So it becomes interesting to search for such relations in the last few layers , here we inspect 8th attention head of the penultimate layer. Additionally, we can select specific #text(fill:red)[image patches like the brightest spot] in @fig_raw_attention_image as query and plot the saliency on the keys of the #text(fill:blue)[response tokens], as shown in @fig_rawattention_text. (higher saliency highlighted in blue, top 7 tokens underlined).
+  // So we primarily focus on inspecting raw attention of the final few layers of the LLM.
+  // However, self-attention suffers from low resolution, which was addressed with the advent of multi-head attention @vaswani2023attentionneed
+  
+  Inspecting these relationships is easy as it only involves collecting queries from target tokens and visualizing their attention over the keys of other tokens, either within the same or across different modalities. In @fig_raw_attention_image, we inspect a single head of attention by collecting #text(fill:green)[all response tokens] as the target query and plotting the average saliency over the #text(fill:red)[image] (higher saliency highlighted in red) . Additionally, we can select specific #text(fill:red)[image patches like the brightest spot] in @fig_raw_attention_image as query and plot the saliency on the keys of the #text(fill:blue)[response tokens], as shown in @fig_rawattention_text. (higher saliency highlighted in blue, top 7 tokens underlined).
 
 
   
@@ -175,27 +178,25 @@ raw_attention_text)]
 
 In Transformer-based models, raw attention weights do not always provide meaningful insights into token importance as we saw before. As information propagates through multiple layers, embeddings become increasingly mixed. This is because self-attention does not inherently preserve token identity across layers; rather, it continuously blends representations from multiple input tokens. As a result, by the time we reach higher layers, individual token contributions become obscure, and raw attention weights fail to capture the original token relationship @chefer_rollout . Moreover, raw attention saliency maps often appear noisy and less interpretable compared to methods like @Selvaraju_2019, @jacobgilpytorchcam, which provide more structured visualizations of important regions.
 
-To address this issue, we look into recent methods like @chefer_rollout, @gildenblat_vit_explain. Attention Rollout tries to recursively aggregate attention across layers while also accommodating for skip connections. Our interest in using @chefer_rollout as a diagnostic tool mostly comes as an inspiration from @Mondal_covid_explainability, where medical experts leveraged saliency-based explainability methods like Attention Rollout to study chest X-rays and CT scans for disease classification in COVID-19 and pneumonia cases. Furthermore, their analysis also identified cases where a well scaled model struggled in correctly classifying the disease. This further confirms our belief that saliency inspection from a practicing radiologist should be considered an essential axis of evaluation for vision-language models, particularly in medical question answering.#footnote[#text(size:7pt)[our experiments with employing Attention Rollout and Attention Flow @chefer_rollout in visual question answering is still ongoing]]
+To address this issue, we look into recent methods like @chefer_rollout, @gildenblat_vit_explain. Attention Rollout tries to recursively aggregate attention across layers while also accommodating for skip connections. Our interest in using @chefer_rollout as a diagnostic tool mostly comes as an inspiration from @Mondal_covid_explainability, where medical experts leveraged saliency-based explainability methods like Attention Rollout to study chest X-rays and CT scans for disease classification in COVID-19 and pneumonia cases. Furthermore, their analysis also identified cases where a well scaled model struggled in correctly classifying the disease. This further confirms our belief that saliency inspection from a practicing radiologist should be considered an essential axis of evaluation for vision-language models, particularly in medical question answering.#footnote[#text(size:5pt)[our experiments with employing saliency inspection as a diagnostic toll in visual question answering is still ongoing.]]
 
 ]
 
 #let rollout_fig = [
   #grid(rows:  2,row-gutter: 12pt,
   
-  figure(rect(radius: 5pt,fill:my_colors.alt_fg.lighten(50%))[
+  figure(rect(radius: 5pt,fill:my_colors.alt_fg.lighten(50%),stroke: 1pt)[
     #image("../../our_images/saliency/roco_31069.jpg",height: 100pt,width:100pt)
     #v(-0.5em)
-    #text(size:6pt,style: "italic")[#emoji.child: can you spot a fracture on the bone?]
+    #text(size:6pt,style: "italic")[#emoji.child: can you spot a fracture on the bone?\ #emoji.robot:Yes there is a fracture on the bone #linebreak() in the image \<end_of_turn\>]
     ],caption:[Test Input Example from @pelka2018roco]),
     
   figure(rect(radius: 5pt,fill:my_colors.alt_fg)[
-    #text(size:8pt)[Rollout from the last 4 layers]
-    #v(-0.5em)
     #image("../../our_images/saliency/rollout_roco31069.png",height: 100pt,width:100pt)
-    #v(-0.5em)
-    #text(size:6pt)[#emoji.robot: Yes there is a fracture on the bone #linebreak()
-    in the image \<end_of_turn\>]
-    ],caption:[Generation and Rollout Saliency]),
+    #v(-0.8em)
+    #text(size:8pt)[Attention Rollout]
+
+    ],caption:[Rollout Saliency]),
   
   )]
 

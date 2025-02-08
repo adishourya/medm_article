@@ -1,5 +1,5 @@
 #import "../callouts.typ": * 
-= Model Architecture
+= Model Architecture #icon("tick")
 
 
 == Instruct Models <section_instruct_models>

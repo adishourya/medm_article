@@ -10,7 +10,7 @@
 
 #let title = [
 	*Adapting Lightweight Multimodal Language Models for #linebreak()
-	Radiological Visual-Linguistic Tasks #linebreak()
+	Radiological Visual Question Answering #linebreak()
 	A Practical Approach*
 ]
 
@@ -24,14 +24,14 @@
 #grid(columns: (1fr,1fr),
 
   align(center)[Chang Sun #link(<affiliation_a>,super[a])
-  #h(-0.25em)#super[,]#h(-0.25em)
+  #h(-0.3em)#super[,]#h(-0.3em)
   #link(<affiliation_a>,super[b])\
   #text(size:8pt,
   "chang.sun@maastrichtuniversity.nl")],
   
   align(center)[me #link(<affiliation_b>,super[b])
-  #h(-0.25em)#super[,]#h(-0.25em)
-  #link(<affiliation_star>,super[\*])\
+  #h(-0.3em)#super[,]#h(-0.3em)
+  #link(<affiliation_star>,super[#sym.dagger])\
   #text(size:8pt,
   "my_email")]
 )
@@ -45,7 +45,7 @@
 ])<affiliation_b>
 
 #text(5pt,style:"italic",
-[#super([\*]) work done during internship and stuff])<affiliation_star>
+[#super([#sym.dagger]) work done during an internship at #super[a]])<affiliation_star>
 
 
 
@@ -102,9 +102,13 @@
 = Data Availability
 - Medpix for annealing data : #emoji.face.hug 
   #link("https://huggingface.co/datasets/adishourya/MEDPIX-ShortQA")
+
+- Synthetically generated question answer pairs of @pelka2018roco can be found here:
+  - Train split #emoji.face.hug #link("https://huggingface.co/datasets/adishourya/ROCO-QA-Train")
+  - Valid and Test split #emoji.face.hug #link("https://huggingface.co/datasets/adishourya/ROCO-QA")
  
 = Code Availability
-- All the code that went into finetuning our models and their model card can be found in our #icon("github-mark") #link("https://github.com/adishourya/MedM")
+- All the code that went into finetuning our models and their model card can be found in our #icon("github-mark") #link("https://github.com/adishourya/MedM") main repository.
 
 - our fork of @stan2024lvlminterpretinterpretabilitytoollarge can be found here: #icon("github-mark") #link("https://github.com/adishourya/lvlm-interpret")
 

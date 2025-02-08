@@ -96,7 +96,7 @@
 
       plot.add(medpix_eval,label:[#text(size:6pt)[Medpix]],style:style1)
       plot.add(roco_eval,label:[#text(size:6pt)[ROCO]],style:style2)
-      plot.add(roco_medpix_anneal,label:[#text(size:6pt)[ROCO+Medpix Annealed (CL)]],style:style3)
+      plot.add(roco_medpix_anneal,label:[#text(size:6pt)[ROCO+Medpix Annealed]],style:style3)
 
       plot.annotate({
         content(

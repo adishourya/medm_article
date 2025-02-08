@@ -1,5 +1,5 @@
 //---- Global Variables-----
-#let all_off = true
+#let all_off = false
 #let my_global = (
   hide_section_plan : false or all_off,
   hide_comments : false or all_off,
@@ -145,7 +145,7 @@
   #show ref: it => {text(my_colors.link_color, it)}
   
   // caption colors
-  #show figure.caption: set text(.9em, fill: my_colors.alt_bg)
+  #show figure.caption: set text(.75em, fill: my_colors.alt_bg)
 
   // table settings
 

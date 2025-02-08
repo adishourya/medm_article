@@ -1,17 +1,17 @@
 #let mcq_llama = [
 ```py
-		def generate_mcq_with_ollama(caption):
-		# Construct the prompt for ollama for mcq based questions
-		prompt = f"""
-  		Ask 5 questions about the content and generate four options for each question.    The questions should be answerable with the information provided in the caption, and the four options should include one correct and three incorrect options, with the position of the correct option randomized. The output should use the following template: i:‘the question index’ question:‘the generate question’ choice: ‘A:option content B:option content C:option content D:option content’ answer: The correct option(A\B\C\D) {caption}.
-		"""
-		response = ollama.chat(model='llama3.1',
-        messages=[ {
-						'role': 'user',
-						'content': prompt } ])
-
-		# Return the generated text from the response
-		return response['message']['content'].strip()
+def generate_qapairs(caption):
+  # Construct the prompt for ollama for mcq based questions
+  prompt = f"""
+  Based on the following medical image captions generate appropriate question. The medical image caption is in square bracket; treat this as the answer to generate a single question: [{caption}]
+  """
+  response = ollama.chat(model='llama3.1',
+      messages=[ {
+          'role': 'user',
+          'content': prompt } ])
+  
+  # Return the generated text from the response
+  return response['message']['content'].strip()
 
 ```
 ]

@@ -1,28 +1,5 @@
 #import "../callouts.typ":* 
-= Introduction <section_introduction>
-
-
-#plan[
-- #comment[example comment]
-- #todo[example todo]
-
-+ quick introduction to llms and how llms (AI) are used in medical domain.
-
-+ cite(phi4, paligemma) smaller models (SLMs) continue to get better from advancements, including the use of curation of high-quality organic data, and post-training innovations. . cite(paligemma) s trained to be a versatile and broadly knowledgeable base model that is effective to transfer. It achieves strong performance on a wide variety of open-world tasks as much as 40 .SLMS continues to push the frontier of size vs quality
-
-+ This with other advancements (cite examples mixed precision training , lora finetuning , quantized inference) has allowed individual researchers to finetune and to run models on lesser demanding hardwares.
-
-+ recent improvement (briefly mention how models are getting smaller for the better) in performance in general domain does not always reflect in medical llms (inflated interest)
-
-+ challenges : cost of labeling; parallel image caption medical data (compare to cc12m and sometimes good chunk of the internet) and intrinsic difficulties in representation learning in challenging medical imagery
-+ advent of multi-modality was really beneficial in medical AI as is its hard to encode all context in just 1 modality . @ryai_2019180031
-+ Current Instruction tuned models does well on zero shot on unseen tasks (give examples) but not really in medical domain.But these models are highly transferable (quote paligemma and others)
-+ Cemented position of ai as inferior to clinicians.
-+ bar for medical is higher than others not just for accuracy but also in privacy and mitigating bias (mention most publically available datasets caution against deployment).Alignment is an active area of research
-+ Carefully designing metrics and consensus axis for evaluation. (briefly mention standard nlp-metrics is ill conditioned.) 
-
-
-]
+= Introduction #icon("tick") <section_introduction>
 
 In recent years, significant advancements have been made in adapting Large Language Models (*LLMs*), which have already proven quite successful in general-purpose tasks, to specialized medical domains. Efforts by individual researchers @photomzroco2023 @vansonsbeek2023openendedmedicalvisualquestion and major organizations have resulted in notable models, such as Med-PaLM @Singhal2023, a text-based medical expert capable of answering both consumer and professional medical questions, and LLaVA-Med @li2023llavamedtraininglargelanguageandvision, a Large Vision-Language Model (*LVLM*) that can process open-ended queries involving biomedical images.
 
