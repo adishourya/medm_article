@@ -22,28 +22,32 @@
 
 == Data Curation <section_curation>
 #plan[
-+ Most soa models start with dataset curation and often end up with the largest voulme of high quality medical data.
-  - Training a state of the art medical model often start with curating a state of the art medical dataset.
-  
-+ Briefly discuss what roco does to build their pipeline.
-+ most instruct models are made from human labelers. But some models like @abdin2024phi also trained on synthetic data. 
-
-+ instruct dataset 1 to gain conceptual understanding like cc12m @changpinyo2021cc12m.
-+ Task specific instruct dataset 2 like roco @pelka2018roco , @johnson2019mimiccxrjpglargepubliclyavailable.
-
-+ need for validation of labels in medical instruct dataset
+  + Finetuning a medical model not only needs a big network.
+    - But also a big dataset ensures enough examples of variety.
+    - Dataset being big also benefits if not all the examples have fuzzy labels. The dataset probably contains enough good signal to combat fuzzy labels.
+    - This is more important since pretraining datasets does not include medical content.
+    - A medical datasets demand more rigorous pre-processing compared to those datasets that involve medical content.
+    - The preprocessing step involves de-duplication, de-identification, and ensuring a fair representation of population as much as we can so that the model does not learn harmful model biases.
+    - A good practice of dataset curation comes from @Singhal2023 which trains on an instruction tuned @flan_palm with roughly 540 Billion parameter.
+      - They train and evaluate their model on self curated dataset like MultimedQA which samples from publically available datasets (@MedQA, @LiveQA, @MedMCQA, @MedMCQA, @PubMedQA, @MedicationQA)
+    - In this section we describe our data curation technique to train a model capable of answering open ended radiological questions.
+      - we carefully work with datasets that already contained pre-processed data that do not require us to perform de-identification or bias issues.
+      - But we mostly focus on extracting good signals for model to learn by generating question answer pairs that is more convenient for a model to learn instead of captioning which often remains inferior . 
+      
+    
 + summarize @section_datamix @section_synthetic @section_annealing 
 	
 ]
 
-Most of the time spent on developing the State of the art medical question answering model goes into curating the state of the art (biggest) dataset.
-- Medpalm @Singhal2023 curates from multiple open source datasets (@MedicationQA, @PubMedQA, @MedMCQA, @LiveQA , @MedQA)
-- Llava Med @li2023llavamedtraininglargelanguageandvision curates (PMC 15M)
-- PMC VQA @zhang2024pmcvqavisualinstructiontuning curates @xmcmic_pmc_vqa.
-- Most of the publically available datasets for finetuning do
-  - extensive label validation
-  - Deduplcation
-  - and most importantly remove personally identifiable information.
+
+Fine-tuning a medical model not only requires a large network but also a high-quality, high-volume dataset to ensure sufficient variety and coverage. A large dataset is particularly beneficial even if some examples contain noisy or fuzzy labels, as the volume of data often provides enough reliable signal to counteract such inconsistencies. This is especially critical in the medical domain, where pretraining datasets typically lack sufficient medical content. Development of a state of the art medical model often starts with a new state of the art curated dataset. 
+
+Curating medical datasets demands more rigorous preprocessing compared to general-domain datasets, involving steps such as de-duplication, de-identification, and ensuring fair representation of the population to minimize model learning harmful biases. A notable practice of effective dataset curation comes from @Singhal2023, which fine-tunes an instruction-tuned @flan_palm model with roughly 540 billion parameters. Their approach involves training and evaluating the model on self-curated datasets like MultimedQA, which samples from publicly available datasets such as @MedQA, @LiveQA, @MedMCQA, @PubMedQA, and @MedicationQA. MultimedQA now serves as a new benchmark for evaluating models that are trained for answering professional and consumer-level medical questions.
+
+In this section, we describe our data curation techniques to train a model capable of answering open-ended radiological questions. We carefully work with datasets that already contain pre-processed data, eliminating the need for additional steps like de-identification or addressing bias issues. Our primary focus is on extracting high-quality signals for the model to learn effectively. To achieve this, we generate question-answer pairs, which are more conducive to learning compared to captioning-based approaches that often yield inferior results.
+
+
+
 
 
 === Determining the Data Mix <section_datamix>
@@ -56,6 +60,25 @@ Most of the time spent on developing the State of the art medical question answe
  -  The lack in scale and diversity of visual concepts (with respect to vision/language-only counterparts) makes it hard for V+L models to perform adequately in the wild.
 
 ]
+
+
+Similar datasets for vision-language modeling in radiology include:
+
+- *MIMIC-CXR-JPG @johnson2019mimiccxrjpglargepubliclyavailable*: This dataset contains 377,110 chest X-rays from 227,827 imaging studies, labeled with 14 annotations derived from NLP-applied radiology reports. It is publicly available and supports medical computer vision research but focuses primarily on chest X-rays, requiring additional datasets for comprehensive radiology question answering.
+
+- *PMC-15M @li2023llavamedtraininglargelanguageandvision*: A large-scale dataset with 15 million biomedical image-text pairs extracted from PubMed Central. It is significantly larger than previous public datasets like MIMIC-CXR and includes a diverse range of biomedical images, though it is not publicly released.
+
+- *PMC-VQA @zhang2024pmcvqavisualinstructiontuning*: Created from 381K image-caption pairs from PMC-OA @lin2023pmcclip, generating 1.49M question-answer pairs. It is filtered to 226,946 pairs and includes a variety of radiological images, with a high-quality sample of 2,000 manually verified Q&A pairs.
+
+- *Radiology Object in COntext (ROCOv2) @pelka2018roco*: A multimodal dataset with 79,789 radiological images from the PMC Open Access subset, including 35,705 new images and additional anatomical and directional concepts for X-rays. The dataset is used for tasks like captioning, multi-label classification, and pre-training vision-language models for radiology.
+
+- *MedPix @siragusa2024medpix20comprehensivemultimodal*: A free, open-access database with over 12,000 clinical cases that include images, diagnoses, and treatment information. MedPix 2.0, built as a MongoDB instance, enhances data querying for AI training, though raw data access is restricted.
+
+For fine-tuning a general-purpose radiology question-answering model, we focus on datasets like ROCO, MedPix, and PMC-VQA, which provide rich and diverse data to support the training and evaluation of a VLM capable of answering open ended radiological questions.
+
+
+
+
 
 - Determining the proportion of different pathologies in a medical instruction dataset is critical before fine-tuning a model. Our approach to analyzing this data mix involved leveraging results from their label validation and conducting scaling law @kaplan2020scalinglawsneurallanguage experiments (see @section_scaling).
 

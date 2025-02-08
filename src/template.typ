@@ -1,5 +1,5 @@
 //---- Global Variables-----
-#let all_off = false
+#let all_off = true
 #let my_global = (
   hide_section_plan : false or all_off,
   hide_comments : false or all_off,
