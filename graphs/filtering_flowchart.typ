@@ -21,7 +21,7 @@
    width:auto,
 	fill: tint.lighten(60%),
 	stroke: 1pt + tint.darken(20%),
-	corner-radius: 5pt,
+	corner-radius: 2pt,
 	..args,
 )
 
@@ -58,18 +58,18 @@
 	spacing: 8pt,
 	cell-size: (10cm, 12mm),
 	edge-stroke: 1pt,
-	edge-corner-radius: 5pt,
+	edge-corner-radius: 2pt,
 	mark-scale: 70%,
 
    // nodes
-	blob(nodes.corpus,node_values.corpus, tint: yellow, shape: house),
-	blob(nodes.filter0,node_values.pathology, tint:orange),
+	blob(nodes.corpus,node_values.corpus, tint: my_colors.accent.lighten(50%), shape: house),
+	blob(nodes.filter0,node_values.pathology, tint:my_colors.accent3.lighten(50%)),
 	blob(nodes.llm,node_values.llm, tint: white),
-	blob(nodes.bucket0,node_values.literature, tint: gray),
-	blob(nodes.bucket1,node_values.related_image,tint:gray),
-	blob(nodes.filter,node_values.filter,tint:orange,shape:hexagon),
+	blob(nodes.bucket0,node_values.literature, tint: gray.darken(10%)),
+	blob(nodes.bucket1,node_values.related_image,tint:gray.lighten(30%)),
+	blob(nodes.filter,node_values.filter,tint:my_colors.accent3.lighten(50%),shape:hexagon),
    node(nodes.bin,node_values.bin),
-	blob(nodes.final,node_values.final, tint: green, shape:house),
+	blob(nodes.final,node_values.final, tint: green.lighten(30%), shape:house),
 
    //annot
    node((0.28,2.5),annots.at(0)),
@@ -80,12 +80,12 @@
    // edge(nodes.corpus,edge_values.at(0)),
    edge(nodes.corpus,nodes.filter0),
    edge(nodes.filter0,nodes.llm),
-   edge((0,2),(-0.2,2),"--"),
-   edge((-0.2,2),nodes.bucket0,[],"--|>"),
+   edge((0,2),(-0.2,2),"-"),
+   edge((-0.2,2),nodes.bucket0,[],"-|>"),
    // edge(nodes.llm, nodes.bucket0,[Template\ @prompt_template1],"--|>"),
    
-   edge((0,2),(0.2,2),"--"),
-   edge((0.2,2), nodes.bucket1,[],"--|>"),
+   edge((0,2),(0.2,2),"-"),
+   edge((0.2,2), nodes.bucket1,[],"-|>"),
    // edge(nodes.llm, nodes.bucket1,[Template\ @prompt_template2],"--|>"),
    
    edge(nodes.bucket0, (0,4),[],"-"),
@@ -93,7 +93,7 @@
 
    edge((0,4),nodes.filter,"-|>"),
    
-   edge(nodes.filter, nodes.bin,[else],"--|>"),
-   edge(nodes.filter,nodes.final,[if],"--|>")
+   edge(nodes.filter, nodes.bin,[else],"-|>"),
+   edge(nodes.filter,nodes.final,[if],"-|>")
 )
 

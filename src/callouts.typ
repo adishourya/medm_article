@@ -68,6 +68,7 @@
 	)
 }
 
+// your colored table
 
 
 #let bullet(content) = {

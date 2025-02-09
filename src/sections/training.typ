@@ -44,7 +44,7 @@ Fine-tuning a medical model not only requires a large network but also a high-qu
 
 Curating medical datasets demands more rigorous preprocessing compared to general-domain datasets, involving steps such as de-duplication, de-identification, and ensuring fair representation of the population to minimize model learning harmful biases. A notable practice of effective dataset curation comes from @Singhal2023, which fine-tunes an instruction-tuned @flan_palm model with roughly 540 billion parameters. Their approach involves training and evaluating the model on self-curated datasets like MultimedQA, which samples from publicly available datasets such as @MedQA, @LiveQA, @MedMCQA, @PubMedQA, and @MedicationQA. MultimedQA now serves as a new benchmark for evaluating models that are trained for answering professional and consumer-level medical questions.
 
-In this section, we describe our data curation techniques to train a model capable of answering open-ended radiological questions. We carefully work with datasets that already contain pre-processed data, eliminating the need for additional steps like de-identification or addressing bias issues. Our primary focus is on extracting high-quality signals for the model to learn effectively. To achieve this, we generate question-answer pairs, which are more conducive to learning compared to captioning-based approaches that often yield inferior results.
+In this section, we describe our data curation techniques to train a model capable of answering open-ended radiological questions. We carefully work with datasets that already contain pre-processed data, eliminating the need for additional steps like de-identification or addressing bias issues. Our primary focus is on extracting high-quality signals for the model to learn visual concepts effectively. To achieve this, we generate question-answer pairs, which are more conducive to learning compared to captioning-based approaches that often yield inferior results.
 
 
 
@@ -53,14 +53,33 @@ In this section, we describe our data curation techniques to train a model capab
 === Determining the Data Mix <section_datamix>
 #plan[
 	// #comment[this is wrong]
-	+ show that we need a focused dataset to finetune.
-	+ treemap of the dataset.
-	+ (did not work with medpix @siragusa2024medpix20comprehensivemultimodal alone)
-	#todo[adjust depth of treemaps... depth 2 should be readable]
- -  The lack in scale and diversity of visual concepts (with respect to vision/language-only counterparts) makes it hard for V+L models to perform adequately in the wild.
-
++ To obtain a promising model it is essential to carefully determine the proportion of different pathologies in our data mix.
+  - lack in scale in certain pathologies might lead to inadequate performance when inferenced in the wild.
+  - its important to understand the training mix to get a reasonable expectation at evaluation time.
+  - we examine some of the datasets that has high volume. 
+ 
 ]
 
+#let roco_path_table = table(
+  columns: 2,
+  [Unified Medical Language Term], [Images],
+   [Fluid], [1779],
+   [Neoplasms], [1705],
+   [Cystic], [1469],
+   [Heart], [1288],
+   [Liver], [1244],
+   [Pathological Dilatation], [1084],
+   [Entire bony skeleton], [1077],
+   [Brain], [1058],
+   [Pleural effusion disorder], [1049],
+   [Nodule], [1032],
+)
+
+// #roco_path_table
+#figure(
+include "../../graphs/bar_instruct.typ",
+caption: []
+)
 
 Similar datasets for vision-language modeling in radiology include:
 
@@ -74,22 +93,6 @@ Similar datasets for vision-language modeling in radiology include:
 
 - *MedPix @siragusa2024medpix20comprehensivemultimodal*: A free, open-access database with over 12,000 clinical cases that include images, diagnoses, and treatment information. MedPix 2.0, built as a MongoDB instance, enhances data querying for AI training, though raw data access is restricted.
 
-For fine-tuning a general-purpose radiology question-answering model, we focus on datasets like ROCO, MedPix, and PMC-VQA, which provide rich and diverse data to support the training and evaluation of a VLM capable of answering open ended radiological questions.
-
-
-
-
-
-- Determining the proportion of different pathologies in a medical instruction dataset is critical before fine-tuning a model. Our approach to analyzing this data mix involved leveraging results from their label validation and conducting scaling law @kaplan2020scalinglawsneurallanguage experiments (see @section_scaling).
-
-- we mainly worked with three high quality datasets : @siragusa2024medpix20comprehensivemultimodal , @pelka2018roco , @johnson2019mimiccxrjpglargepubliclyavailable.
-
-- The focus of all three datasets is radiology. but looking at the mix the number of examples are far too less when compared to instruct datasets that are available for general domain task.
-
-- Performing scaling experiments show that the model cannot be reliable when solely trained on such datasets .That include but variety but not much volume.
-
-- @johnson2019mimiccxrjpglargepubliclyavailable was a better datasets as the mix focuses only on chest x-ray images. with huge volume.
-
 #coherence(title:[Question?])[
   - how do i write about why i selected these datasets.
     - medpix #emoji.checkmark , physionets cxr-jpg #emoji.checkmark , roco ?
@@ -100,12 +103,12 @@ For fine-tuning a general-purpose radiology question-answering model, we focus o
 The CheXpert team performed rigorous label validation, as detailed in @johnson2019mimiccxrjpglargepubliclyavailable. They manually annotated 687 stratified radiology reports using CheXpert categories, ensuring diverse pathology coverage. Validation included tasks such as mention extraction, negation detection, and uncertainty detection, with precision, recall, and F1 scores evaluating algorithm performance. Following this, we conducted scaling tests to assess how well the data mix supports model scalability.
 
 
-#wrap-content(figure(
-		// cxr_table_conditions_table,
-  figure(image("../../our_images/data/treemap_cxr.png",width: 250pt)),
-		// rect(width: 250pt,height: 250pt),
-		caption:[Labeled])
-,[#glorem(num:300)])
+// #wrap-content(figure(
+// 		// cxr_table_conditions_table,
+//   figure(image("../../our_images/data/treemap_cxr.png",width: 250pt)),
+// 		// rect(width: 250pt,height: 250pt),
+// 		caption:[Labeled])
+// ,[#glorem(num:300)])
 
 
 === Synthetic Data <section_synthetic>
@@ -119,18 +122,12 @@ The CheXpert team performed rigorous label validation, as detailed in @johnson20
 ]
 
 #import "../code_blocks/code.typ":mcq_llama  
-#oasis-align(
-figure(
-  [#mcq_llama],caption: []),
-	[#glorem(num:120)],
-)
 
-#glorem(num:100)
+#wrap-content(align:top+left,
+figure(mcq_llama,caption:[]),
+[#glorem(num:350)])
 
-// #tip[
-//   - Use a finetuned model to generate questions.
-//   - Instruction tuned models need excessive templating. And still does not generate conceptual question answer pairs
-// ]
+
 
 
 
@@ -142,33 +139,33 @@ figure(
 #plan[
 + Mixing Medpix low vol / High Quality to generate larger volume of data.
 ]
-#glorem(num:100)
 
-#wrap-content(align:right,
-	figure(    image("../../our_images/data/treemap_medpix2.png",width: 250pt),
-		// rect(width: 250pt,height: 250pt),
-		caption:[Labeled])
-,[#glorem(num:200)])
+
+#wrap-content(
+  include("../../graphs/bar_medpix.typ"),
+  glorem(num:180)
+)
+
 
 #wrap-content(
   align:right,
   figure(
-  // rect(width: 250pt,height: 300pt)[#todo[Add Filtering flow chart]],
-  include("../../graphs/filtering_flowchart.typ"),
-  // include("../../graphs/test_losses.typ"),
+    rect(stroke: none,fill:my_colors.alt_fg,radius: 5pt, outset: 2pt)[
+  #include("../../graphs/filtering_flowchart.typ")
+],
   caption: [#todo[incomplete!]]),
   [#glorem(num:200)]
 )
 
-=== Designing Curriculum Learning <section_curriculum>
-#plan[
-  - Medpix has extensive doctor notes . and those are great intermediate reasoning to learn. 
-  - Curriculum learning @srinivasan2022curriculumlearningdataefficientvisionlanguage
-  - our filteration was hand labelled small generations on the earlier epoch
-  - llava med also does this but does not give out examples at all.
+// === Designing Curriculum Learning <section_curriculum>
+// #plan[
+//   - Medpix has extensive doctor notes . and those are great intermediate reasoning to learn. 
+//   - Curriculum learning @srinivasan2022curriculumlearningdataefficientvisionlanguage
+//   - our filteration was hand labelled small generations on the earlier epoch
+//   - llava med also does this but does not give out examples at all.
   
-]
-#glorem(num:180)
+// ]
+// #glorem(num:180)
 
 
 
