@@ -27,7 +27,7 @@ Methods of Evaluation
   
 
 // first example generation
-  rect(height:100%,width:100%,radius: 5pt,fill:my_colors.alt_fg)[
+  rect(height:100%,width:100%,radius: 5pt,fill:my_colors.alt_fg.lighten(20%))[
     #text(size:6pt)[
     Generation: #text(fill:blue)[_Coronal CT Image shows the lesion crossing the midline._]\
     True Answer: #text(fill:green.darken(30%))[Coronal CT after intrvenous contrast injection: expnaisve cervical process showing that the medial border of the mass crosses the midline.]\
@@ -64,17 +64,23 @@ Methods of Evaluation
 #figure(evaluation_example_figure,caption:[])
 
 
-#let nlp_eval_table = figure(
+#let nlp_eval_table =figure(
 table(
-  columns: 4,
-  [Metrics],[Medpix],[roco],[roco+medpix],
-  [rouge-s],[0.311 #sym.plus.minus 0.255],[0.325 #sym.plus.minus 0.132],[0.334 #sym.plus.minus 0.122],
-  [rouge-m],[0.167 #sym.plus.minus 0.082],[0.179 #sym.plus.minus 0.124],[0.181 #sym.plus.minus 0.124],
-  [rouge-l],[0.308 #sym.plus.minus 0.125],[0.278 #sym.plus.minus 0.120],[0.304 #sym.plus.minus 0.180],
-  [Bleu]   ,[0.055 #sym.plus.minus 0.111],[0.059 #sym.plus.minus 0.090],[0.077 #sym.plus.minus 0.065],
-  [*Accuracy*],[34/200],[63/200],[71/200],
+  columns: 6,
+  [Metrics],[SLAKE],[Medpix],[roco],[roco + medpix],[pmc-vqa],
+  
+  [rouge-s],[-],[0.311 #sym.plus.minus 0.255],[0.325 #sym.plus.minus 0.132],[0.334 #sym.plus.minus 0.122],[-],
+  
+  [rouge-m],[-],[0.167 #sym.plus.minus 0.082],[0.179 #sym.plus.minus 0.124],[0.181 #sym.plus.minus 0.124],[-],
+  
+  [rouge-l],[-],[0.308 #sym.plus.minus 0.125],[0.278 #sym.plus.minus 0.120],[0.304 #sym.plus.minus 0.180],[-],
+  
+  [Bleu]   ,[-],[0.055 #sym.plus.minus 0.111],[0.059 #sym.plus.minus 0.090],[0.077 #sym.plus.minus 0.065],[-],
+  
+  [*Accuracy*],[?],[34/200 ()],[63/200 ()],[71/200 ()],[? ()]
+  
 ),caption:[results #sym.plus.minus 1 standard deviation])
 
-#wrap-content(nlp_eval_table,[#glorem(num:400)],align:bottom+right)
+#glorem(num:400)
+#nlp_eval_table
 
-#glorem(num:100)

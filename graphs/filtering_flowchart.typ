@@ -79,7 +79,7 @@
    // edges
    // edge(nodes.corpus,edge_values.at(0)),
    edge(nodes.corpus,nodes.filter0),
-   edge(nodes.filter0,nodes.llm),
+   edge(nodes.filter0,nodes.llm,stroke:(thickness:1.5pt,paint:my_colors.accent4)),
    edge((0,2),(-0.2,2),"-"),
    edge((-0.2,2),nodes.bucket0,[],"-|>"),
    // edge(nodes.llm, nodes.bucket0,[Template\ @prompt_template1],"--|>"),

@@ -70,8 +70,8 @@ In our experiments, we follow from the works of @stan2024lvlminterpretinterpreta
   "or"
   
   "softmax"((
-    markrect(Q, tag: #<q2> , color:#red , radius: #20%, padding:#.1em)
-    mark(K , tag:#<k2> ,color:#blue , radius:#20%)^T
+    markrect(Q, tag: #<q2> , color:#red.darken(20%) , radius: #20%, padding:#.1em)
+    mark(K , tag:#<k2> ,color:#blue.darken(20%) , radius:#20%)^T
     )/ sqrt(d_k)
   )V
   
@@ -119,7 +119,7 @@ for word in response_text.split(){
   + v(-0.8em)
   +[#line(stroke:(dash:"dashed",thickness:0.3pt),length: 110pt)]
   + v(-1.9em)
-  +[#text(size:6pt,style:"italic",fill:green)[#linebreak()#emoji.robot: Yes the bone appe... leg <\end_of_turn\>]]
+  +[#text(size:6pt,style:"italic",fill:green.darken(20%))[#linebreak()#emoji.robot: Yes the bone appe... leg <\end_of_turn\>]]
 ),
 caption:[Interested Region])<fig_raw_attention_image>]
 
@@ -150,7 +150,7 @@ raw_attention_text)]
   // So we primarily focus on inspecting raw attention of the final few layers of the LLM.
   // However, self-attention suffers from low resolution, which was addressed with the advent of multi-head attention @vaswani2023attentionneed
   
-  Inspecting these relationships is easy as it only involves collecting queries from target tokens and visualizing their attention over the keys of other tokens, either within the same or across different modalities. In @fig_raw_attention_image, we inspect a single head of attention by collecting #text(fill:green)[all response tokens] as the target query and plotting the average saliency over the #text(fill:red)[image] (higher saliency highlighted in red) . Additionally, we can select specific #text(fill:red)[image patches like the brightest spot] in @fig_raw_attention_image as query and plot the saliency on the keys of the #text(fill:blue)[response tokens], as shown in @fig_rawattention_text. (higher saliency highlighted in blue, top 7 tokens underlined).
+  Inspecting these relationships is easy as it only involves collecting queries from target tokens and visualizing their attention over the keys of other tokens, either within the same or across different modalities. In @fig_raw_attention_image, we inspect a single head of attention by collecting #text(fill:green.darken(30%))[all response tokens] as the target query and plotting the average saliency over the #text(fill:red.darken(20%))[image] (higher saliency highlighted in red) . Additionally, we can select specific #text(fill:red.darken(20%))[image patches like the brightest spot] in @fig_raw_attention_image as query and plot the saliency on the keys of the #text(fill:blue)[response tokens], as shown in @fig_rawattention_text. (higher saliency highlighted in blue, top 7 tokens underlined).
 
 
   

@@ -9,6 +9,7 @@ Although post-training innovations have enabled these models to perform well on 
 One of the primary reasons for this gap is the significant cost associated with generating labeled medical datasets, along with the complexities involved in encoding medical data, and the inherent challenges of recognizing intricate patterns in healthcare contexts which sometimes even leads to disagreement amongst clinicians. As a result, many generalist models fall short when applied to specialized medical tasks, as they lack the domain-specific expertise and alignment #comment[alignment/sensitivity?] required to handle the nuanced nature of medical data.
 
 
+
 The advent of multimodal models has partially addressed the latter part of the
 challenge, allowing the integration of multimodal datasets without
 constraining labelers to encode medical records into a single modality. 
@@ -21,6 +22,8 @@ Despite these hurdles, the potential of medical AI continues to inspire
 progress. While its practical usage in clinical settings remains limited,
 researchers and practitioners strive to push the boundaries of what is
 achievable, carefully refining the technology and exploring their upper bound with each iteration.
+
+#comment[The current introduction is ok but we need a better flow - start with background and problem statements and then what the research challenges are, why they are still challenges (the research gaps), why the research challenges are significant, then what we propose to solve it (if possible, also indicate why/how our approaches are different from the previous work. Then a paragraph about the main contributions of this work, and paper structure. )]
 
 #coherence[
   - formally present instruct models before referring to it.

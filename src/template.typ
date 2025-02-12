@@ -1,5 +1,5 @@
 //---- Global Variables-----
-#let all_off = true
+#let all_off = false
 #let my_global = (
   hide_section_plan : false or all_off,
   hide_comments : false or all_off,
@@ -83,6 +83,7 @@
   
   // set fonts and paragraph settings
   #set text(font: "Barlow", size: 11pt, spacing: .35em)
+  // #set text(font: "Barlow", size: 11pt)
   // #set text(font: "Arial", size: 11pt, spacing: .35em)
   #set math.equation(numbering: "(1)")
   #set heading(numbering: "1.")
