@@ -13,7 +13,15 @@
 + summarize section
 ]
 
-#todo[we will write this after we are done with section 4]
+#figure(
+include "../../graphs/training_recipe_flow_chart.typ",
+caption: [Methodology]
+
+)
+
+
+// #todo[we will write this after we are done with section 4]
+#glorem(num:100)
 
 
 //-------------------
@@ -101,30 +109,29 @@ Below, we examine several widely used data mixtures that were considered for tra
 
 - *SLAKE @liu2021slakesemanticallylabeledknowledgeenhanceddataset*, contains detailed semantic annotations labeled by practicing physicians, covering a wide range of the human anatomy. This serves as an excellent preliminary radiological knowledge base for fine-tuning a medical VLM such as ours. While models like @beyer2024paligemma demonstrate reasonable zero-shot performance in recognizing some body parts most likely due to their exposure to similar examples from open-web datasets during pre-training but this capability remains imperfect in the instruct model.
 
-  To address this limitation, we finetune on SLAKE as the initial stage of our fine-tuning curriculum. Specifically, we save a checkpoint after training the model on SLAKE for five epochs, and this checkpoint serves as the starting point for further training for all of our subsequent models. This approach aligns with the curriculum learning strategy outlined in @srinivasan2022curriculumlearningdataefficientvisionlanguage, which highlights the importance of first enabling a model to recognize simpler visual concepts before advancing to more complex structures. #footnote[#emoji.face.teeth currently we have only done this with our pmc model.]
+  To address this limitation, we finetune on SLAKE as the initial stage of our fine-tuning curriculum. Specifically, we save a checkpoint after training the model on SLAKE for five epochs, and this checkpoint serves as the starting point for further training for all of our subsequent models. This approach aligns with the curriculum learning strategy outlined in @srinivasan2022curriculumlearningdataefficientvisionlanguage, which highlights the importance of first enabling a model to recognize simpler visual concepts before advancing to more complex structures. #footnote[!! _currently we have only done this with our pmc model._]
+
+  
+
+- *PMC-VQA* dataset @zhang2024pmcvqavisualinstructiontuning is constructed by sampling from @lin2023pmcclip and is designed to facilitate medical visual question answering. It includes multiple-choice and fill-in-the-blank-style questions, providing a structured approach to assessing model performance. The dataset is generated and filtered using a large language model like @OpenAI_ChatGPT, a process we further discus in @section_synthetic. To evaluate its effectiveness, the authors train *MedVInT-TE* and *MedVInT-TD* on PMC-VQA, achieving performance scores comparable to the current state-of-the-art @li2023llavamedtraininglargelanguageandvision on benchmark datasets like @lau2018dataset_vqarad , @BenAbacha2019VQAMed_imagechief
+ 
 
 
-- *Radiology Object in COntext (ROCOv2) @pelka2018roco*: samples from PMC Open Access @PMC_Open_Access to curate 79,789 radiological image caption pairs,
-
-including 35,705 new images and additional anatomical and directional concepts for X-rays. The dataset is widely used for tasks like captioning, multi-label classification, and pre-training vision-language models for radiology.
+- *Radiology Objects in Context (ROCOv2)* dataset @pelka2018roco derives from @PMC_Open_Access and contains 79,789 radiological image-caption pairs. It has been extensively used in medical AI research like @ImageCLEF2023Overview for tasks such as image captioning, multi-class classification, and vision-language model pretraining. With an average caption length of approximately 20 words per example, ROCOv2 offers a rich and structured source of radiological image-text data, making it particularly suitable for developing and refining open-ended vision-language models in the medical domain.
 
 
-- *MedPix 2.0 @siragusa2024medpix20comprehensivemultimodal*: similar to @pelka2018roco, utilizes a semi-automatic pipeline to extract visual data. However, unlike @pelka2018roco, it incorporates a manual curation process from MedPix® @MedPix to remove noisy labels. This curation effort spans over 12,000 cases, each containing images, diagnoses, and treatment information. Among all of our available datasets, this data mixture offers one of the most comprehensive collections of both textual and visual radiological concepts, making it particularly well-suited for annealing a technique we explore further in @section_annealing.
+- *MedPix 2.0 @siragusa2024medpix20comprehensivemultimodal* is similar to @pelka2018roco, in utilizing a semi-automatic pipeline to extract radiological image-text pairs. It incorporates a manual curation process by sampling from MedPix® @MedPix to remove noisy labels. This curation effort spans over 12,000 cases, each containing images, diagnoses, and treatment information. Among all of our available datasets, this data mixture offers one of the most comprehensive collections of both textual and visual radiological concepts, making it particularly well-suited for annealing a technique we explore further in @section_annealing.
 
 
-- *PMC-VQA @zhang2024pmcvqavisualinstructiontuning*: 
-  - curates around 381k image-caption pairs by sampling from @lin2023pmcclip.
-  - we take inspiration and then sample from datasets like roco and medpix geared towards answering open ended questions.
-Created from 381K image-caption pairs from PMC-OA @lin2023pmcclip, generating 1.49M question-answer pairs. It is filtered to 226,946 pairs and includes a variety of radiological images, with a high-quality sample of 2,000 manually verified Q&A pairs.
 
 
 // - *PMC-15M @li2023llavamedtraininglargelanguageandvision*: A large-scale dataset with 15 million biomedical image-text pairs extracted from PubMed Central. It is significantly larger than previous public datasets like MIMIC-CXR and includes a diverse range of biomedical images, though it is not publicly released.
 
 // - *MIMIC-sXR-JPG @johnson2019mimiccxrjpglargepubliclyavailable*: This dataset contains 377,110 chest X-rays from 227,827 imaging studies, labeled with 14 annotations derived from NLP-applied radiology reports. It is publicly available and supports medical computer vision research but focuses primarily on chest X-rays, requiring additional datasets for comprehensive radiology question answering.
 
-some text 
-#footnote[our experiments with @johnson2019mimiccxrjpglargepubliclyavailable is currently in development or something!]
-#footnote[PMC-15M @li2023llavamedtraininglargelanguageandvision unreleased to the public at the time of writing.]
+// #glorem(num:150) 
+
+The *PMC-VQA* dataset provides direct image-question-answer pairs, making it suitable for fine-tuning a medical VQA model without the need for any preprocessing. Whereas *ROCOv2* and *MedPix 2.0* contain image-caption pairs, requiring additional processing to be useful for VQA training. We take inspiration from @zhang2024pmcvqavisualinstructiontuning and generate synthetic question-answer pairs from these datasets using a large language model. However, raw synthetic data may contain noise or inconsistencies, necessitating a filtering step to ensure high-quality supervision. Only after this refinement process can the resulting dataset effectively support training a medical VQA model. We discuss this synthesis and filtering process in the next section. #footnote[our experiments with @johnson2019mimiccxrjpglargepubliclyavailable is currently in development] #footnote[PMC-15M @li2023llavamedtraininglargelanguageandvision is unavailable to the public at the time of writing.]
 
 // The CheXpert team performed rigorous label validation, as detailed in @johnson2019mimiccxrjpglargepubliclyavailable. They manually annotated 687 stratified radiology reports using CheXpert categories, ensuring diverse pathology coverage. Validation included tasks such as mention extraction, negation detection, and uncertainty detection, with precision, recall, and F1 scores evaluating algorithm performance. Following this, we conducted scaling tests to assess how well the data mix supports model scalability.
 
@@ -151,7 +158,7 @@ some text
 
 #wrap-content(align:top+left,
 figure(mcq_llama,caption:[]),
-[#glorem(num:350)])
+[#glorem(num:200)])
 
 
 
@@ -168,7 +175,7 @@ figure(mcq_llama,caption:[]),
 
 
 #wrap-content(
-  include("../../graphs/bar_medpix.typ"),
+  figure(include("../../graphs/bar_medpix.typ"),caption: []),
   glorem(num:180)
 )
 
@@ -179,7 +186,7 @@ figure(mcq_llama,caption:[]),
     rect(stroke: none,fill:my_colors.alt_fg.lighten(50%),radius: 5pt, outset: 2pt)[
   #include("../../graphs/filtering_flowchart.typ")
 ],
-  caption: [#todo[incomplete!]]),
+  caption: []),
   [#glorem(num:200)]
 )
 

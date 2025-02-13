@@ -38,7 +38,8 @@ The model demonstrates to be extremely versatile on transfer across many tasks.B
 ]
 
 #figure(
-image("../../our_images/model/model2.svg"),
+// image("../../our_images/model/model2.svg"),
+include("../../graphs/model_arch.typ"),
 caption: [Model Architecture for Generalist LVLMs @beyer2024paligemma],
 placement: auto,
 )<figure_model>

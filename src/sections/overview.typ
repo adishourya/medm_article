@@ -23,4 +23,4 @@
 ]
 
 // #text(fill:white.darken(40%), lorem(400))
-#glorem(num:400)
+#glorem(num:650)

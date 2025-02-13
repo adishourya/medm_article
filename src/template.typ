@@ -1,8 +1,8 @@
 //---- Global Variables-----
 #let all_off = false
 #let my_global = (
-  hide_section_plan : false or all_off,
-  hide_comments : false or all_off,
+  hide_section_plan :  true or all_off,
+  hide_comments : true or all_off,
   hide_todo : false or all_off 
 )
 
@@ -33,6 +33,9 @@
   accent9: rgb("#4392f1"),
   accent10: rgb("#8d94ba"),
   accent11:rgb("#39304a").lighten(30%),
+  accent12:rgb("#a9c8da"),
+  accent13:rgb("#e0ccd7"),
+  accent14:rgb("#c2b7cd"),
   // alt_accent : rgb("#a3be8c"),
   alt_fg : rgb("#f1f4f7"),
   code_fg : rgb("#eceff4"),

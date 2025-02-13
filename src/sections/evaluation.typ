@@ -77,9 +77,9 @@ table(
   
   [Bleu]   ,[-],[0.055 #sym.plus.minus 0.111],[0.059 #sym.plus.minus 0.090],[0.077 #sym.plus.minus 0.065],[-],
   
-  [*Accuracy*],[?],[34/200 ()],[63/200 ()],[71/200 ()],[? ()]
+  [*Accuracy*],[? (87/100)],[34/200 (82/200)],[63/200 (113/200)],[71/200 (113/200)],[?]
   
-),caption:[results #sym.plus.minus 1 standard deviation])
+),caption:[results #sym.plus.minus 1 standard deviation (MedVInT-TE @zhang2024pmcvqavisualinstructiontuning as baseline) #footnote[we will transpose the results later]])
 
 #glorem(num:400)
 #nlp_eval_table
