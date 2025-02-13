@@ -39,6 +39,8 @@
   // alt_accent : rgb("#a3be8c"),
   alt_fg : rgb("#f1f4f7"),
   code_fg : rgb("#eceff4"),
+  // code_fg : rgb("#fff9e8"),
+  // code_fg : rgb("#f7d407"),
   plan_fg : rgb("#a3be8c"),
   alt_bg : rgb("#484848"),
   heading1_color : rgb("#003a6c"),
@@ -102,8 +104,8 @@
   #show raw : set par(leading:4pt)
   // plugin setup
   #show: codly-init.with()
-  #codly(stroke: 1pt + my_colors.accent)
-  #codly(fill: my_colors.code_fg,inset:2.5pt)
+  #codly(stroke:1pt+my_colors.accent)
+  #codly(fill: my_colors.code_fg.lighten(10%),inset:2.5pt)
   #codly(zebra-fill: none)
   #codly(number-format:none) // turn off line numberings
 

@@ -12,9 +12,9 @@
 
 #set text(size:8pt)
 
-#let image_color = my_colors.accent3
-#let text_color = my_colors.accent1
-#let llm_color = my_colors.accent10
+#let image_color = my_colors.accent3.lighten(50%)
+#let text_color = my_colors.accent10.lighten(40%)
+#let llm_color = my_colors.accent11.lighten(50%)
 
 #let node_pos = (
   "image": (0,0),
@@ -84,6 +84,7 @@ name:"vit"
  height:10em,
  width:5em,
  fill:white.darken(5%),
+ stroke:1pt+white.darken(25%),
  [#rotate(-90deg)[#text(size:6pt)[Projection\ head]]],
 shape:trapezium.with(dir:left,angle:55deg),
 name:"proj"
@@ -106,6 +107,7 @@ width:4em,
  [#rotate(-90deg)[#text(size:5pt)[Image Features]]],
 // [image features],
 fill:image_color.lighten(50%),
+stroke:image_color.darken(10%),
 name:"c1"
 ),
 
@@ -114,6 +116,7 @@ height:12em,
 width:4em,
  [#rotate(-90deg)[#text(size:5pt)[Text Features]]],
 fill:text_color.lighten(50%),
+stroke:text_color.darken(10%),
 name:"c2"
 ),
 
@@ -137,7 +140,8 @@ stroke:llm_color,
 height:10em,
 width:12em,
 align(left)[#par(leading: 3pt)[_Chest radiograph obtained after endoscopic submucosal dissection showing left pleural fluid with subsegmental collapse of the left lower lobe._]],
-fill:llm_color.lighten(50%)
+fill:llm_color.lighten(50%),
+stroke:llm_color.darken(50%)
 ),
 
 
@@ -179,8 +183,8 @@ edge(node_pos.question,node_pos.tokenizer,"->",stroke:1pt+text_color,[#text(size
 
 edge(node_pos.tokenizer,node_pos.concat2,"->",stroke:1pt+text_color),
 
-edge((3,-0.5),node_pos.llm,"->",[#text(size:5pt)[concat features]]),
+edge((3,-0.5),node_pos.llm,"->",[#text(size:5pt)[concat features]],stroke:(thickness:1pt,paint:black)),
 
-edge(node_pos.llm,node_pos.generation,"->",[#text(size:5pt)[Generation]])
+edge(node_pos.llm,node_pos.generation,"->",[#text(size:5pt)[Generation]],stroke:1pt+llm_color)
 
 )

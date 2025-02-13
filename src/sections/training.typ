@@ -144,19 +144,20 @@ The *PMC-VQA* dataset provides direct image-question-answer pairs, making it sui
 // ,[#glorem(num:300)])
 
 
-=== Synthetic Data <section_synthetic>
+=== Generating Question Answer pairs <section_synthetic>
 #plan[
-+ as base models are usually not pretrained on medical corpus.questions generated with base models usually give away the main subject of the answers.
-+ make arguments on being careful while prompting. and why currently we can only have shorter length questions when curating open ended questions as they give away the subject of the answers often. #todo[add examples]
-+ Evaluation for parallel text pairs needs to be human evaluated.
-
-+ Popular tempelates for generating vqa and mcq later for accuracy evaluation. [appendix]
-+ we develop simpler question answer pairs because we believe it first needs to align with the medical concept and so on.
+  + we take inspiration from 
+  + as base models are usually not pretrained on medical corpus.questions generated with base models usually give away the main subject of the answers.
+  + make arguments on being careful while prompting. and why currently we can only have shorter length questions when curating open ended questions as they give away the subject of the answers often. #todo[add examples]
+  + Evaluation for parallel text pairs needs to be human evaluated.
+  
+  + Popular tempelates for generating vqa and mcq later for accuracy evaluation. [appendix]
+  + we develop simpler question answer pairs because we believe it first needs to align with the medical concept and so on.
 ]
 
 #import "../code_blocks/code.typ":mcq_llama  
 
-#wrap-content(align:top+left,
+#wrap-content(align:top+right,
 figure(mcq_llama,caption:[]),
 [#glorem(num:200)])
 
