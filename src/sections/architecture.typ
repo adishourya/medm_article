@@ -1,5 +1,5 @@
 #import "../callouts.typ": * 
-= Model Architecture #icon("tick")
+= Model Architecture
 
 
 == Instruct Models <section_instruct_models>
@@ -13,9 +13,11 @@
       - also they disclose their datasets that they have pretrained on.
       - it has been pretrained on open web datasets that may include some radiological images . so we might expect the model to have good zero shot performance on .
 ]
-Large Multimodal models usually get trained in stages. The first step of training is usually referred to as *pre-training* where we train the model on a big corpus like @changpinyo2021cc12m @sharma2018conceptual @DBLP:journals1 @DBLP:journals2 . These datasets are usually called Instruct datasets. Models tuned on such datasets are in turn called *Instruct models* which act as the backbone for our application. One of the primary expectations of these models is to perform exceptionally well in next-token prediction at pre-training .This core functionality enables the model to generate coherent and contextually appropriate responses depending on the nature of the prompt.
+Large Multimodal models usually get trained in stages. The first step of training is usually referred to as *pre-training* where we train the model on a big corpus like @changpinyo2021cc12m @sharma2018conceptual @DBLP:journals1 @DBLP:journals2 to develop a *Base Model*. The Base Model in itself does not hold much utility to end-users as their sole objective has been to accurately predict the next token . To make the base model more useful to hold conversation we further train them on *Instruct Datasets* which aligns the model to make them suitable to hold conversations. .*Instruct models* act as the backbone for our application. This core functionality enables the model to generate coherent and contextually appropriate responses depending on the nature of the prompt.
 
-Pre-training on large and diverse datasets is essential, as it allows these models to capture and learn diverse signals across variety of domains which enables us to do *transfer learning* .The performance of the instruction tuned model is also measured on how well they perform in downstream applications without needing extensive task specific training.
+// Pre-training on large and diverse datasets is essential, as it allows these models to capture and learn diverse signals across variety of domains which enables us to do *transfer learning* . The performance of the instruction tuned model is also measured on how well they perform in downstream applications without needing extensive task specific training.
+
+Pre-training on large and diverse datasets is essential, as it allows these models to capture and learn diverse signals across a variety of domains, by enabling *transfer learning*. A technique where they are further trained on smaller, domain-specific datasets to refine their knowledge for a particular task. The effectiveness of an instruction-tuned model is often evaluated based on its performance in downstream applications without requiring extensive task-specific training, demonstrating its ability to generalize. 
 
 Models besides being trained on parallel image-text interleave data also get supervised on serialized chat data which covers various topics to reflect human preferences on different aspects such as instruction following, truthfulness, honesty and helpfulness. Most of the models that are deployed undergo robust internal evaluations to measure toxicity, profanity, and other potential issues in the generated captions.Its a common practice to further train on datasets such as the FairFace dataset @karkkainenfairface with the intentions that the model does not capture biases originating from Race, Gender or Age. 
 
@@ -40,7 +42,7 @@ The model demonstrates to be extremely versatile on transfer across many tasks.B
 #figure(
 // image("../../our_images/model/model2.svg"),
 include("../../graphs/model_arch.typ"),
-caption: [Model Architecture for Generalist LVLMs @beyer2024paligemma],
+caption: [Model Architecture for Generalist VLMs @beyer2024paligemma],
 placement: auto,
 )<figure_model>
 

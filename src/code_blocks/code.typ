@@ -3,7 +3,7 @@
 def generate_qapairs(caption):
   # Construct the prompt for ollama for mcq based questions
   prompt = f"""
-  Based on the following medical image captions generate appropriate question. The medical image caption is in square bracket; treat this as the answer to generate atmost 5 question answer pairs: [{caption}]
+  Based on the following medical image captions generate appropriate and insightful question for the caption. Treat this caption as the ground truth to generate your question: {caption}
   """
   response = ollama.chat(model='llama3.1',
       messages=[ {

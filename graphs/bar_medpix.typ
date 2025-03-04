@@ -32,4 +32,4 @@
 #let medpix_plot = plot(axes: (medpix_count_axis, medpix_label_axis), data: medpix_data)
 
 // Render the bar chart
-#bar_chart(medpix_plot, (250pt, 250pt), fill: (my_colors.accent8,)*5 + (gray,)*8, bar_width: 70%, rotated: true, caption: [MedPix Data])
+#bar_chart(medpix_plot, (250pt, 300pt), fill: (my_colors.accent8,)*5 + (gray.lighten(40%),)*8, bar_width: 70%, rotated: true, caption: [MedPix v2.0 @siragusa2024medpix20comprehensivemultimodal Data count])

@@ -242,6 +242,33 @@ number = {MSR-TR-2024-12},
       url={https://arxiv.org/abs/2302.13971}, 
 }
 
+% llama annealing examples 24% improvement on:
+@article{cobbe2021gsm8k,
+  title={Training Verifiers to Solve Math Word Problems},
+  author={Cobbe, Karl and Kosaraju, Vineet and Bavarian, Mohammad and Chen, Mark and Jun, Heewoo and Kaiser, Lukasz and Plappert, Matthias and Tworek, Jerry and Hilton, Jacob and Nakano, Reiichiro and Hesse, Christopher and Schulman, John},
+  journal={arXiv preprint arXiv:2110.14168},
+  year={2021}
+}
+
+% and 6.4% on:
+@article{hendrycksmath2021,
+  title={Measuring Mathematical Problem Solving With the MATH Dataset},
+  author={Dan Hendrycks and Collin Burns and Saurav Kadavath and Akul Arora and Steven Basart and Eric Tang and Dawn Song and Jacob Steinhardt},
+  journal={NeurIPS},
+  year={2021}
+}
+
+% refernce to use caption to qa pairs
+@misc{zhu2023chatgptasksblip2answers,
+      title={ChatGPT Asks, BLIP-2 Answers: Automatic Questioning Towards Enriched Visual Descriptions}, 
+      author={Deyao Zhu and Jun Chen and Kilichbek Haydarov and Xiaoqian Shen and Wenxuan Zhang and Mohamed Elhoseiny},
+      year={2023},
+      eprint={2303.06594},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2303.06594}, 
+}
+
 % tokenizer : sentencepiece
 @misc{kudo2018sentencepiecesimplelanguageindependent,
       title={SentencePiece: A simple and language independent subword tokenizer and detokenizer for Neural Text Processing}, 
@@ -431,6 +458,28 @@ year = {2016},
       archivePrefix={arXiv},
       primaryClass={cs.LG},
       url={https://arxiv.org/abs/2001.08361}, 
+}
+
+% peft param efficient ft
+@misc{xu2023parameterefficientfinetuningmethodspretrained,
+      title={Parameter-Efficient Fine-Tuning Methods for Pretrained Language Models: A Critical Review and Assessment}, 
+      author={Lingling Xu and Haoran Xie and Si-Zhao Joe Qin and Xiaohui Tao and Fu Lee Wang},
+      year={2023},
+      eprint={2312.12148},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2312.12148}, 
+}
+
+% lora
+@misc{hu2021loralowrankadaptationlarge,
+      title={LoRA: Low-Rank Adaptation of Large Language Models}, 
+      author={Edward J. Hu and Yelong Shen and Phillip Wallis and Zeyuan Allen-Zhu and Yuanzhi Li and Shean Wang and Lu Wang and Weizhu Chen},
+      year={2021},
+      eprint={2106.09685},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2106.09685}, 
 }
 
 % scaling law for lora
@@ -837,4 +886,27 @@ doi = {10.1016/j.procs.2017.12.136}
       archivePrefix={arXiv},
       primaryClass={cs.CL},
       url={https://arxiv.org/abs/2401.11817}, 
+}
+
+
+@inproceedings{papineni2002bleu,
+  author    = {Papineni, Kishore and Roukos, Salim and Ward, Todd and Zhu, Wei-Jing},
+  title     = {BLEU: A Method for Automatic Evaluation of Machine Translation},
+  booktitle = {Proceedings of the 40th Annual Meeting of the Association for Computational Linguistics},
+  pages     = {311--318},
+  publisher = {Association for Computational Linguistics},
+  year      = {2002},
+  doi       = {10.3115/1073083.1073135}
+}
+
+@inproceedings{lin-2004-rouge,
+    title = "{ROUGE}: A Package for Automatic Evaluation of Summaries",
+    author = "Lin, Chin-Yew",
+    booktitle = "Text Summarization Branches Out",
+    month = jul,
+    year = "2004",
+    address = "Barcelona, Spain",
+    publisher = "Association for Computational Linguistics",
+    url = "https://www.aclweb.org/anthology/W04-1013",
+    pages = "74--81",
 }

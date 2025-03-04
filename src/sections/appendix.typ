@@ -21,7 +21,7 @@
 #training_args <table_training_args>
 
 - All prompts are taken verbatim from @Singhal2023
-- for text based base llms from @li2023llavamedtraininglargelanguageandvision
+  - for text based base llms from @li2023llavamedtraininglargelanguageandvision
 #figure(prompt1,caption:[]) <prompt_template1>
 
 

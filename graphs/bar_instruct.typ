@@ -1,4 +1,4 @@
-#import "@preview/plotst:0.2.0":*
+#import "@preview/plotst:0.2.0" :*
 #import "../src/template.typ": my_colors
 
 #set text(size: 6pt)
@@ -161,11 +161,11 @@
 
 #grid(
   columns: 3,
-bar_chart(roco_plot, (100%, 25%), fill: my_colors.accent4, bar_width: 70%, rotated: true,caption:[@pelka2018roco contains 82K QA pairs]),
+bar_chart(roco_plot, (100%, 25%), fill: my_colors.accent4, bar_width: 70%, rotated: true,caption:[ROCO v2.0 @pelka2018roco contains 82K QA pairs]),
 
-bar_chart(slake_plot, (100%, 25%), fill: my_colors.accent3, bar_width: 70%, rotated: true,caption:[@liu2021slakesemanticallylabeledknowledgeenhanceddataset contains 614 images , total:14K QA pairs]),
+bar_chart(slake_plot, (100%, 25%), fill: my_colors.accent3, bar_width: 70%, rotated: true,caption:[ SLAKE @liu2021slakesemanticallylabeledknowledgeenhanceddataset contains 614 images , total:14K QA pairs]),
 
-bar_chart(pmc_plot, (100%, 25%), fill: my_colors.accent10, bar_width: 70%, rotated: true,caption:[Rough Distribution of the answer labels of @zhang2024pmcvqavisualinstructiontuning]),
+bar_chart(pmc_plot, (100%, 25%), fill: my_colors.accent10, bar_width: 70%, rotated: true,caption:[PMC-VQA @zhang2024pmcvqavisualinstructiontuning 's Rough Distribution of the answer labels]),
 
 )
 

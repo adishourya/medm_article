@@ -114,13 +114,13 @@ name:"c1"
  node(node_pos.concat2,
 height:12em,
 width:4em,
- [#rotate(-90deg)[#text(size:5pt)[Text Features]]],
+ [#rotate(-90deg)[#text(size:5pt)[Text\ Features]]],
 fill:text_color.lighten(50%),
 stroke:text_color.darken(10%),
 name:"c2"
 ),
 
-node(fill:gradient.linear(image_color,text_color,angle:90deg),
+node(fill:gradient.linear(image_color,text_color,angle:90deg).sharp(2,smoothness:80%),
 stroke:none,
  width:5em,height:5em,
  enclose: (<c1>, <c2>), name: <group>
@@ -165,7 +165,7 @@ fill:my_colors.alt_fg
 
  node(node_pos.input_label,
 height:3em,
-width:6em,
+width:8em,
 stroke:none,
 [#text(size:5pt)[Input Image and\ Text Prompt]],
 fill:my_colors.alt_fg

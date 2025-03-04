@@ -36,6 +36,7 @@
   accent12:rgb("#a9c8da"),
   accent13:rgb("#e0ccd7"),
   accent14:rgb("#c2b7cd"),
+  accent15:rgb("#bf616a"),
   // alt_accent : rgb("#a3be8c"),
   alt_fg : rgb("#f1f4f7"),
   code_fg : rgb("#eceff4"),
@@ -87,9 +88,14 @@
   #let column_layout = 1
   
   // set fonts and paragraph settings
-  #set text(font: "Barlow", size: 11pt, spacing: .35em)
-  // #set text(font: "Barlow", size: 11pt)
+  // #set text(font: "Barlow", size: 11pt, spacing: .35em)
+  // #set text(font: "Barlow", size: 12pt)
   // #set text(font: "Arial", size: 11pt, spacing: .35em)
+  // #set text(font: "Arial", size: 11pt)
+  // #set text(font: "Barlow", size: 11pt)
+  // #set text(font: "IBM Plex Sans", size: 11pt)
+  // #set text(font: "IBM Plex Mono", size: 11pt)
+  #set text(font: "Barlow", size: 11pt,spacing:0.22em)
   #set math.equation(numbering: "(1)")
   #set heading(numbering: "1.")
   // line height
@@ -131,7 +137,7 @@
 
   #let footer_text1 =  [#smallcaps[#text(fill:red)[first draft]]]
 
-  #let footer_text2 = [page #context {
+  #let footer_text2 = [Page #context {
     let counter = counter(page)
     counter.display("1 of 1",both:true)
   }]
@@ -154,6 +160,14 @@
   	v(.3em)
 
  }
+ 
+  #show heading.where(level: 3): content => context{
+  
+    v(.1em)
+    text(weight: "bold", 1.05em, content)
+    v(.2em)
+  
+  }
   
   // underline all links and refernce
   #show link: it => {text(my_colors.link_color,it)}
@@ -161,7 +175,7 @@
   #show ref: it => {text(my_colors.link_color, it)}
   
   // caption colors
-  #show figure.caption: set text(.75em, fill: my_colors.alt_bg)
+  #show figure.caption: set text(.6em, fill: my_colors.alt_bg)
 
   // table settings
 
@@ -225,7 +239,7 @@
 #let show_abstract(content) = [
 
   #rect(fill: my_colors.alt_fg, radius: 8pt,inset: 15pt, stroke:(bottom:(2pt+abstract_gradient)))[
-  	#align(center)[
+  	#align(left)[
   			#content
   		]
   	#linebreak()
