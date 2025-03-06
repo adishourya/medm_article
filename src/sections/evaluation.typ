@@ -94,7 +94,7 @@ For evaluating our models we perform.
 == limitations of standard evaluation metrics
 Before presenting our evaluation strategy, it is essential to highlight the shortcomings of standard NLP metrics and conventional accuracy calculations in fairly assessing generative models.  
 
-- *Multiple-Choice Accuracy Bias*: Many accuracy calculations for VLMs rely on multiple-choice questions, making scoring straightforward. However, this approach is inherently flawed, as expected accuracy is directly influenced by the number of answer choices. A possible solution is to increase the number of options, but this is often infeasible, especially for complex medical queries. While human annotation can enhance option quality, automated scoring remains an over-estimate of the true accuracy. 
+- *Multiple-Choice Accuracy Bias*: Many accuracy calculations for VLMs rely on multiple-choice questions, making scoring straightforward. However, this approach is inherently flawed, as expected accuracy is directly influenced by the number of answer choices. A possible solution is to increase the number of choices, but this is often infeasible, especially for complex medical queries. While human annotation can enhance multiple choices quality, automated scoring remains an over-estimate of the true accuracy. 
 
   Multiple-choice evaluation methods also suffers from model stochasticity. Since generative models can produce different outputs for the same prompt across multiple runs, accuracy scores may vary significantly on the same test set.
   
@@ -102,18 +102,18 @@ Before presenting our evaluation strategy, it is essential to highlight the shor
 
 - *Limitations of Standard NLP Metrics*: Metrics like BLEU @papineni2002bleu and ROUGE @lin-2004-rouge, while widely used in NLP, are poorly suited for evaluating open-ended medical responses. These metrics primarily measure n-gram overlap, which fails to capture factuality or reasoning correctness. Since, open ended questions inherently can be answered in multiple valid ways, a low score does not necessarily indicate a poor response, but more importantly a high score does not ensure clinical reliability.  
 
-- Despite their limitations, we present these metrics for completeness while emphasizing the need for more robust evaluation strategies in @table_annealing and @table_prestage.
+- Despite their limitations, we present these metrics for completeness while emphasizing the need for more robust evaluation strategies in @table_annealing.
 
 
 == Our Evaluation Methodology  
 
 - *Closed-Set Question Evaluation*: For multiple-choice questions, such as those in @xmcmic_pmc_vqa, we report accuracy as the primary metric.  
 
-  - To address the limitations of standard accuracy calculations, we draw inspiration from @zhang2024pmcvqavisualinstructiontuning and perform inference five times #footnote[not yet done!]. If the model generates different answer labels in at least three out of five runs, we dock a point to account for inconsistency.  
+  - To address the limitations of standard accuracy calculations, we draw inspiration from @zhang2024pmcvqavisualinstructiontuning and perform inference five times. If the model generates different answer labels in at least three out of five runs, we dock a point to account for inconsistency.  
 
-- *Open-Ended Question Evaluation*: For free-form responses in datasets such as @pelka2018roco and @MedPix, we leverage llm based evaluation. Specifically, we use a predefined template #footnote[add prompt] to systematically assess model generations via @OpenAI_ChatGPT.  
+- *Open-Ended Question Evaluation*: For free-form responses in datasets such as @pelka2018roco and @MedPix, we leverage llm based evaluation. Specifically, we use a predefined template to systematically assess model generations via @OpenAI_ChatGPT.  
 
-== Ablation studies across annealing and pre-stage finetuning
+== Ablation studies across annealing
 - We observed a performance improvement with annealing, even when using a small volume of annealing data, as shown in @table_annealing. While larger annealing datasets may further enhance robustness, our results indicate that even modest annealing can yield benefits for cheap. 
 
 
@@ -146,7 +146,7 @@ table(
   
   [*Accuracy*],[34/200 *(82/200)*],[63/200 *(113/200)*],[71/200 *(113/200)*],
   
-),caption:[results with no pre-stage finetuning #sym.plus.minus 1 standard deviation (*LLava-Med* @li2023llavamedtraininglargelanguageandvision as baseline) #footnote[we will transpose the results later]])
+),caption:[results with no pre-stage finetuning #sym.plus.minus 1 standard deviation (*LLava-Med* @li2023llavamedtraininglargelanguageandvision as baseline)])
 
 
 
@@ -182,7 +182,7 @@ table(
 
 #linebreak()  
 // - #text(fill: gray)[We observed (no/a?) significant improvement when performing the first stage of fine-tuning with semantic label examples from @liu2021slakesemanticallylabeledknowledgeenhanceddataset, as shown in @table_prestage, highlighting the effectiveness of prepending semantically enriched data for model performance enhancement.]
--
+// -
 // #linebreak()
-#nlp_eval_table_withprestage <table_prestage>
+// #nlp_eval_table_withprestage <table_prestage>
 

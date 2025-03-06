@@ -92,10 +92,10 @@
   // #set text(font: "Barlow", size: 12pt)
   // #set text(font: "Arial", size: 11pt, spacing: .35em)
   // #set text(font: "Arial", size: 11pt)
-  // #set text(font: "Barlow", size: 11pt)
+  #set text(font: "Barlow", size: 11pt)
   // #set text(font: "IBM Plex Sans", size: 11pt)
   // #set text(font: "IBM Plex Mono", size: 11pt)
-  #set text(font: "Barlow", size: 11pt,spacing:0.22em)
+  // #set text(font: "Barlow", size: 11pt,spacing:0.22em)
   #set math.equation(numbering: "(1)")
   #set heading(numbering: "1.")
   // line height
@@ -135,7 +135,7 @@
   #let header_text1 = [#text(fill:my_colors.alt_fg)[#section_header]]
   #let header_text2 = [#text(fill: my_colors.alt_fg)[]]
 
-  #let footer_text1 =  [#smallcaps[#text(fill:red)[first draft]]]
+  #let footer_text1 =  [#smallcaps[#text(fill:blue)[internship report]]]
 
   #let footer_text2 = [Page #context {
     let counter = counter(page)

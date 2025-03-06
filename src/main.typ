@@ -9,8 +9,8 @@
 // Title
 
 #let title = [
-	*Adapting Lightweight Multimodal Language Models for #linebreak()
-	Radiological Visual Question Answering #linebreak()
+	*Adapting Lightweight Multimodal Language Models #linebreak()
+	for Radiological Visual Question Answering #linebreak()
 	A Practical Approach*
 ]
 
